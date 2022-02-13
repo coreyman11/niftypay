@@ -14,6 +14,8 @@ pub mod niftypay {
 #[derive(Accounts)]
 pub struct Initialize {}
 
+
+//Creating a base account for the program to be stored in. We can rename and rework structure
 #[account]
 pub struct niftypaymain {
     pub owner: Pubkey,
