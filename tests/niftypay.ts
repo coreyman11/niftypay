@@ -11,7 +11,7 @@ describe('niftypay', () => {
 
   it('Is initialized!', async () => {
     // Add your test here.
-    const tx = await program.rpc.initialize({});
+    const tx = await program.rpc.verify_nft({});
     console.log("Your transaction signature", tx);
   });
 });
