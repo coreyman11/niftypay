@@ -9,9 +9,9 @@ describe('niftypay', () => {
 
   const program = anchor.workspace.Niftypay as Program<Niftypay>;
 
-  it('Is initialized!', async () => {
+  it('verify_nft', async () => {
     // Add your test here.
     const tx = await program.rpc.verify_nft({});
-    console.log("Your transaction signature", tx);
+    console.log("confirmed", tx);
   });
 });
