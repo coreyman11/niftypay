@@ -1,5 +1,5 @@
 use anchor_lang::prelude::*;
-use anchor_spl::token::{TokenAccount, Mint, Token,};
+use anchor_spl::token::{TokenAccount, Mint };
 use std::str::FromStr;
 use spl_token_metadata::state::Metadata;
 
@@ -70,13 +70,50 @@ pub mod niftypay {
 
         Ok(())
     }
+    pub fn create_project(ctx: Context<CreateProject>, name: String, contract_id: Pubkey, members: Vec<Pubkey>) -> ProgramResult {
+        let project: &mut Account<Project> = &mut ctx.accounts.project;
+        let creator: &Signer = &ctx.accounts.creator;
+
+        if name.chars().count() > 50 {
+            return Err(ErrorCode::NameTooLong.into())
+        }
+
+        project.contract_id = contract_id;
+        project.creator = *creator.key;
+        project.name = name;
+        project.members = members;
+
+        Ok(())
+    }
+    pub fn create_benefit(ctx: Context<CreateBenefit>, project_id: Pubkey, name: String, benefit_type: BenefitType, frequency: Frequency, allowed_usage: u8, discount: u8, business_owner: Pubkey,) -> ProgramResult {
+        let benefit: &mut Account<Benefit> = &mut ctx.accounts.benefit;
+        let creator: &Signer = &ctx.accounts.creator;
+        let clock: Clock = Clock::get().unwrap();
+
+        if name.chars().count() > 50 {
+            return Err(ErrorCode::NameTooLong.into())
+        }
+
+        benefit.creator = *creator.key;
+        benefit.timestamp = clock.unix_timestamp;
+        benefit.project_id = project_id;
+        benefit.name = name;
+        benefit.benefit_type = benefit_type;
+        benefit.allowed_usage = allowed_usage;
+        benefit.frequency = frequency;
+        benefit.discount = discount;
+        benefit.business_owner = business_owner;
+
+        Ok(())
+    }
+
 }
 
 #[derive(Accounts)]
 pub struct VerifyNFT<'info> {
 
-#[account(address = *program_id)]//The Program ID structre needs to get fixed as well. Should be something like metadata_program_ID
-pub token_metadata_program: AccountInfo<'info>,
+    #[account(address = *program_id)]//The Program ID structre needs to get fixed as well. Should be something like metadata_program_ID
+    pub token_metadata_program: AccountInfo<'info>,
 
     //The owner of the NFT.. Aka the customer who owns the NFT
     pub user: Signer<'info>,
@@ -91,10 +128,95 @@ pub token_metadata_program: AccountInfo<'info>,
     pub nft_metadata_account: AccountInfo<'info>,
 }
 
+#[derive(Accounts)]
+pub struct CreateProject<'info> {
+    #[account(init, payer = creator, space = Project::LEN)]
+    pub project: Account<'info, Project>,
+    pub creator: Signer<'info>,
+    pub system_program: Program<'info, System>,
+}
+#[derive(Accounts)]
+pub struct CreateBenefit<'info> {
+    #[account(init, payer = creator, space = Benefit::LEN)]
+    pub benefit: Account<'info, Benefit>,
+    pub creator: Signer<'info>,
+    pub system_program: Program<'info, System>,
+}
+#[derive(Clone, AnchorSerialize, AnchorDeserialize)]
+pub enum BenefitType {
+    PercentageDiscount,
+    AmountDiscount,
+    Freebie,
+    GiftCard,
+    Entrance
+}
+#[derive(Clone, AnchorSerialize, AnchorDeserialize)]
+pub enum Frequency {
+    OneTime,
+    Monthly,
+    Weekly
+}
+
+#[account]
+pub struct Project {
+    pub contract_id: Pubkey,
+    pub creator: Pubkey,
+    pub name: String,
+    pub members: Vec<Pubkey>
+}
+
+#[account]
+pub struct Benefit {
+    pub project_id: Pubkey,
+    pub creator: Pubkey,
+    pub business_owner: Pubkey,
+    pub name: String,
+    pub benefit_type: BenefitType,
+    pub allowed_usage: u8,
+    pub frequency: Frequency,
+    pub discount: u8,
+    pub timestamp: i64,
+}
+
+const DISCRIMINATOR_LENGTH: usize = 8;
+const PUBLIC_KEY_LENGTH: usize = 32;
+const TIMESTAMP_LENGTH: usize = 8;
+const STRING_LENGTH_PREFIX: usize = 4; // Stores the size of the string.
+const MAX_BENEFIT_NAME_LENGTH: usize = 50 * 4; // 50 chars max.
+const DISCOUNT_LENGTH: usize = 1;
+const ALLOWED_USAGE_LENGTH: usize = 1;
+const BENEFIT_TYPE_LENGTH: usize = 8;
+const FREQUENCY_LENGTH: usize = 8;
+const MAX_PROJECT_NAME_LENGTH: usize = 60 * 4; // 60 chars max.
+
+impl Benefit {
+    const LEN: usize = DISCRIMINATOR_LENGTH
+        + PUBLIC_KEY_LENGTH // creator.
+        + PUBLIC_KEY_LENGTH // business_owner.
+        + PUBLIC_KEY_LENGTH // project_id.
+        + TIMESTAMP_LENGTH // Timestamp.
+        + ALLOWED_USAGE_LENGTH // Allowed usage.
+        + DISCOUNT_LENGTH // Discount.
+        + BENEFIT_TYPE_LENGTH
+        + FREQUENCY_LENGTH
+        + STRING_LENGTH_PREFIX + MAX_BENEFIT_NAME_LENGTH; // Benefit name.
+}
+impl Project {
+    const LEN: usize = DISCRIMINATOR_LENGTH
+        + PUBLIC_KEY_LENGTH // creator.
+        + PUBLIC_KEY_LENGTH // Contract Id.
+        + (8 * PUBLIC_KEY_LENGTH ) // members.
+        + STRING_LENGTH_PREFIX + MAX_PROJECT_NAME_LENGTH; // Project Name.
+}
+
 #[error]
 pub enum ErrorCode {
     #[msg("Error, Not verified")]
     VerifyNFT,
+    #[msg("Provide a valid project name.")]
+    NameNotValid,
+    #[msg("The provided name should be 50 characters long maximum.")]
+    NameTooLong,
 }
 
 //Links
