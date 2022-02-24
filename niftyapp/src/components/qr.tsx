@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState, ChangeEvent } from "react";
-import './App.css';
+import '../App.css';
 import QRCodeStyling, {
   DrawType,
   TypeNumber,

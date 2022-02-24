@@ -7,7 +7,9 @@
         "@types/node": "^17.0.20",
         "@types/react": "^17.0.39",
         "@types/react-dom": "^17.0.11",
-        "create-react-app": "^5.0.0"
+        "create-react-app": "^5.0.0",
+        "react-qr-reader": "^3.0.0-beta-1",
+        "react-qr-scanner": "^1.0.0-alpha.8"
     },
     "devDependencies": {
         "@types/mocha": "^9.0.0",
