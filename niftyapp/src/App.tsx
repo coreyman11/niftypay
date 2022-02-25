@@ -9,10 +9,10 @@ import { Scan } from './components/scan';
 import { Pay } from './components/pay';
 import { Tab } from "./types";
 
-const renderTab = (tab: Tab) => {
+const renderTab = (tab: Tab, setTab: (tab: Tab) => void) => {
   switch (tab) {
     case Tab.Home:
-      return <Home/>;
+      return <Home setTab={setTab}/>;
       break;
     case Tab.Benefits:
       return <Benefits />;
@@ -32,11 +32,12 @@ const renderTab = (tab: Tab) => {
   }
 }
 
+
 function App() {
   const [tab, setTab] = useState<Tab>(Tab.Scan);
   return (
     <div className="App">
-      {renderTab(tab)}
+      {renderTab(tab, setTab)}
     </div>
   );
 }

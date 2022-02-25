@@ -1,8 +1,13 @@
 import { useState } from "react";
 import '../App.css';
+import { Tab } from "../types";
 import { Nifty } from './nifty';
 
-export const Home = () => {
+interface HomeProps {
+  setTab: (tab: Tab) => void;
+}
+
+export const Home: React.FC<HomeProps> = () => {
   
   return (
     <div className="homeContainer container">
