@@ -1,6 +1,6 @@
 import { useState } from "react";
 import '../App.css';
-import { QrReader } from 'react-qr-reader';
+// import { QrReader } from 'react-qr-reader';
 import { Tab } from "../types";
 
 interface ScanProps {

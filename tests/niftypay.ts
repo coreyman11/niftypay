@@ -17,7 +17,6 @@ describe('niftypay', () => {
   // });
 
   it('can create a new project', async () => {
-    // Call the "SendTweet" instruction.
     const creator = program.provider.wallet.publicKey;
     const project = anchor.web3.Keypair.generate();
     const nftAddress = anchor.web3.Keypair.generate();

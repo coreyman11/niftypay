@@ -173,3 +173,25 @@ body {
 .payDetailItem {
   font-weight: bold;
 }
+
+
+.cta-button {
+  height: 45px;
+  border: 0;
+  width: auto;
+  padding-left: 40px;
+  padding-right: 40px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.connect-wallet-button {
+  color: white;
+  background: -webkit-linear-gradient(left, #67a9ff, #9452ff);
+  background-size: 200% 200%;
+  animation: gradient-animation 4s ease infinite;
+  max-width: 240px;
+  margin: auto;
+}
