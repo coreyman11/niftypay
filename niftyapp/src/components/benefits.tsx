@@ -1,13 +1,19 @@
 import { useState } from "react";
 import '../App.css';
 import { BenefitItem } from './benefitItem';
+import { Tab } from "../types";
 
-export const Benefits = () => {
+interface BenefitProps {
+  setTab: (tab: Tab) => void;
+}
+
+export const Benefits: React.FC<BenefitProps> = (props) => {
+  const [benefitChosen, setBenefitChosen] = useState('No result');
 
   return (
     <div className="benefitsContainer container">
       <div className="top">
-        <img src="./backarrow.png" height="20px" className="backArrow"></img>
+        <img src="./backarrow.png" height="20px" className="backArrow" onClick={() => props.setTab(Tab.Scan)}></img>
         <p className="header">Choose Benefits</p>
         <p>&nbsp; &nbsp; &nbsp;</p>
       </div>
@@ -21,7 +27,7 @@ export const Benefits = () => {
           <BenefitItem />
         </div>
       </div>
-      <div className="button">Next</div>
+      <div className="button" onClick={() => props.setTab(Tab.Pay)}>Next</div>
     </div>
   );
 };

@@ -15,16 +15,13 @@ const renderTab = (tab: Tab, setTab: (tab: Tab) => void) => {
       return <Home setTab={setTab}/>;
       break;
     case Tab.Benefits:
-      return <Benefits />;
+      return <Benefits setTab={setTab}/>;
       break;
     case Tab.Scan:
-      return <Scan />;
+      return <Scan setTab={setTab}/>;
       break;
     case Tab.Pay:
-      return <Pay />;
-      break;
-    case Tab.QR:
-      return <QR />;
+      return <Pay setTab={setTab}/>;
       break;
     default:
       return null;
@@ -32,9 +29,8 @@ const renderTab = (tab: Tab, setTab: (tab: Tab) => void) => {
   }
 }
 
-
 function App() {
-  const [tab, setTab] = useState<Tab>(Tab.Scan);
+  const [tab, setTab] = useState<Tab>(Tab.Home);
   return (
     <div className="App">
       {renderTab(tab, setTab)}

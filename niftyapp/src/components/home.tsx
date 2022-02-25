@@ -7,14 +7,14 @@ interface HomeProps {
   setTab: (tab: Tab) => void;
 }
 
-export const Home: React.FC<HomeProps> = () => {
+export const Home: React.FC<HomeProps> = (props) => {
   
   return (
     <div className="homeContainer container">
        <div className="top">
         <p>&nbsp; &nbsp; &nbsp;</p>
         <p className="header">Nifty</p>
-        <img src="./qricon.png" height="20px" className="backArrow"></img>
+        <img src="./qricon.png" height="30px" className="backArrow" onClick={() => props.setTab(Tab.Scan)}></img>
       </div>
       <div className="content homeContent">
         <Nifty />

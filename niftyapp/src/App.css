@@ -102,8 +102,10 @@ body {
 }
 
 .niftyLabel {
-  background-color:hsl(0, 6%, 11%, .4);
-  bottom: 1%;
+  position: relative;
+  background-color:hsl(0, 6%, 11%, 1);
+  margin: 0px 5px;
+  bottom: 20%;
 }
 
 /* BENEFITS */

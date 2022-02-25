@@ -1,12 +1,17 @@
 import { useState } from "react";
 import '../App.css';
+import { Tab } from "../types";
 
-export const Pay = () => {
+interface PayProps {
+  setTab: (tab: Tab) => void;
+}
+
+export const Pay: React.FC<PayProps> = (props) => {
 
   return (
     <div className="payContainer container">
       <div className="top">
-        <img src="./backarrow.png" height="20px" className="backArrow"></img>
+        <img src="./backarrow.png" height="20px" className="backArrow" onClick={() => props.setTab(Tab.Benefits)} ></img>
         <p className="header">Pay</p>
         <p>&nbsp; &nbsp; &nbsp;</p>
       </div>
