@@ -1,0 +1,197 @@
+body {
+  height: 100%;
+  color: white;
+  font-family: Inter;
+}
+
+.App {
+  text-align: center;
+  background: hsla(165, 77%, 19%, 1);
+  background: linear-gradient(180deg, hsla(165, 77%, 19%, 1) 0%, hsla(257, 31%, 25%, 1) 100%);
+  background: -moz-linear-gradient(180deg, hsla(165, 77%, 19%, 1) 0%, hsla(257, 31%, 25%, 1) 100%);
+  background: -webkit-linear-gradient(180deg, hsla(165, 77%, 19%, 1) 0%, hsla(257, 31%, 25%, 1) 100%);
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#0B5442", endColorstr="#372C53", GradientType=1 );
+  min-height: 100vh;
+}
+
+/* GENERIC FORMAT */ 
+.top {
+  display: flex; 
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 30px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: space-between;
+}
+
+.header {
+  font-weight: bold;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+}
+
+.amounts {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 20px 0px;
+}
+
+.bigAmount {
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.subAmount {
+  font-size: 20px;
+}
+
+.middle {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding: 20px 0px;
+}
+
+.button {
+  background-color: hsla(144, 59%, 39%, 1);
+  border-radius: 30px;
+  margin: 30px 20px;
+  padding: 20px;
+  font-weight: bold;
+}
+
+/* HOME */
+.homeContainer {
+
+}
+
+.homeContent {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: flex-start;
+}
+
+/* NIFTY */
+.niftyContainer {
+  border-radius: 10px;
+  height: 150px;
+  width: 150px;
+  background-color: black;
+  margin: 10px;
+}
+
+.niftyImg {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.niftyLabel {
+  position: relative;
+  background-color:hsl(0, 6%, 11%, 1);
+  margin: 0px 5px;
+  bottom: 20%;
+}
+
+/* BENEFITS */
+.benefitsContainer {
+  
+}
+
+/* BENEFIT ITEM */
+.benefitItem {
+  background-color: hsl(0, 6%, 11%, .4);
+  margin: 10px 20px;
+  border-radius: 10px;
+  padding: 15px;
+  display: flex;
+}
+
+.benefitImg {
+  height: 70px;
+  margin-right: 10px;
+}
+
+.benefitDetails {
+  display: flex;
+}
+
+.benefitDetailGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 4px;
+  text-align: left;
+}
+
+.benefitDetailHeader {
+  color: darkgrey;
+  font-size: 12px;
+}
+
+.benefitDetailItem {
+
+}
+
+/* SCAN */
+.scanContainer {
+
+}
+
+/* PAY */
+.payContainer {
+  
+}
+
+.payDetailGroup {
+  background-color: hsl(0, 6%, 11%, .4);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 15px;
+  text-align: left;
+  border-radius: 10px;
+  margin: 5px 20px;
+}
+
+.payDetailItem {
+  font-weight: bold;
+}
+
+
+.cta-button {
+  height: 45px;
+  border: 0;
+  width: auto;
+  padding-left: 40px;
+  padding-right: 40px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.connect-wallet-button {
+  color: white;
+  background: -webkit-linear-gradient(left, #67a9ff, #9452ff);
+  background-size: 200% 200%;
+  animation: gradient-animation 4s ease infinite;
+  max-width: 240px;
+  margin: auto;
+}

@@ -11,7 +11,7 @@ import { BenefitForm } from './pages/Benefits/form';
 import { Benefits } from './pages/Benefits';
 
 
-export function Router(props) {
+export function Router() {
     const { walletAddress } = React.useContext(WalletContext);
     if (!walletAddress) return <Wallet />
     return (

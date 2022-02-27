@@ -3,7 +3,6 @@ import {Connection, PublicKey, clusterApiUrl } from '@solana/web3.js';
 import {Idl, Program, Provider, web3} from '@project-serum/anchor';
 import idl from '../niftypay.json';
 import { WalletContext } from './walletProvider';
-import { Wallet } from '../wallet';
 
 
 const programID = new PublicKey(idl.metadata.address);
@@ -26,7 +25,7 @@ const AnchorProvider = ({ children }: { children: any}) => {
         setProgram(program);
 
     }, [walletAddress])
-    if (!walletAddress) return <Wallet />
+    console.log(provider, program)
     return (
         <AnchorContext.Provider value={ { provider, program } }>
             {children}

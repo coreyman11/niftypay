@@ -42,9 +42,11 @@ export const Wallet = () => {
     Connect to Wallet
   </button>)
   return (
+    <div className="App">
       <div className="container">
         {!walletAddress && renderNotConnectedContainer()}
         {walletAddress && <p>{walletAddress}</p>}
       </div>
+    </div>
   );
 };

@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { AnchorContext } from "../../provider/anchorProvider";
 import { web3 } from '@project-serum/anchor';
 
-export const BenefitForm = (props) => {
+export const BenefitForm = () => {
     const { program, provider } = useContext(AnchorContext);
     const [inputValue, setInputValue] = useState('');
     const createBenefit = async () => {

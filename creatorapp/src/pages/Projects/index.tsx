@@ -4,28 +4,28 @@ import {
     Link,
   } from "react-router-dom";
 
-export const Benefits = () => {
-    const { program } = useContext(AnchorContext);
-    const [benefits, setBenefits] = useState([]);
-    const getBenefitList = async () => {
+export const Projects = () => {
+    const { program, provider } = useContext(AnchorContext);
+    const [projects, setProjects] = useState([]);
+    const getProjectList = async () => {
         try {
-            const benefits = await program.account.benefit.all();
-            console.log("Got the benefits", benefits)
-            setBenefits(benefits.map(p => p.account))
+            const projects = await program.account.project.all();
+            console.log("Got the projects", projects)
+            setProjects(projects.map((p: { account: any; }) => p.account))
 
         } catch (error) {
             console.log("error", error);
         }
     }
     useEffect(() => {
-        getBenefitList();
+        getProjectList();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     return (
         <div className="connected-container">
-            <Link to="new">Create Benefits</Link>
+            <Link to="new">Create Collection</Link>
             <div className="gif-grid">
-                {benefits.map(({ name }, id) => (
+                {projects.map(({ name }, id) => (
                     <div className="gif-item" key={id}>
                         {name}
                     </div>

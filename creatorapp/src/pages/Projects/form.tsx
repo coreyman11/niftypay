@@ -3,7 +3,7 @@ import { AnchorContext } from "../../provider/anchorProvider";
 import { useParams } from "react-router-dom";
 import {web3} from '@project-serum/anchor';
 
-export const ProjectForm = (props) => {
+export const ProjectForm = () => {
     let params = useParams();
     const { program, provider } = useContext(AnchorContext);
     const [inputValue, setInputValue] = useState('');
