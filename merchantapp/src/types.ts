@@ -1,3 +1,3 @@
 export enum Tab {
-    QRCode, Numpad
+    Numpad, QRCode
 }

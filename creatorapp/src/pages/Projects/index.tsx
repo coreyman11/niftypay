@@ -21,16 +21,24 @@ export const Projects = () => {
         getProjectList();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+
     return (
-        <div className="connected-container">
-            <Link to="new">Create Collection</Link>
+        <div className="homeContainer container connected-container">
+            <div className="topArea">
+                <div className="arrowArea"> &nbsp; </div>
+                <div className="walletArea">7aht...2bf9</div>
+            </div>
+            <div className="header">Your Nifty Collections</div>
+            <div className="subheader">You have no collections with Nifty Pay benefits... yet.</div>
             <div className="gif-grid">
                 {projects.map(({ name }, id) => (
-                    <div className="gif-item" key={id}>
-                        {name}
+                    <div className="project" key={id}>
+                        <div className="projectName">{name}</div>
+                        <div className="projectButton"><Link to={id + "/new"}>Add a Benefit</Link></div>
                     </div>
                 ))}
             </div>
+            <Link to="new" className="button"> Add a Collection</Link>
         </div>
     );
 };

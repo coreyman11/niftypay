@@ -15,183 +15,107 @@ body {
 }
 
 /* GENERIC FORMAT */ 
-.top {
-  display: flex; 
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin: 20px 30px;
-}
-
 .container {
   display: flex;
-  flex-direction: column;
-  height: 100vh;
+  flex-direction: column; 
+  justify-content: flex-start;
+}
+.topArea {
+  display: flex;
+  flex-direction: row;
   justify-content: space-between;
+  padding: 50px;
+}
+
+.arrowArea {
+  font-size: 30px;
+}
+
+.arrowLink {
+  color: white;
+  text-decoration: none;
+
+}
+
+.walletArea {
+  border: 1px solid white; 
+  border-radius: 10px;
+  padding: 10px;
 }
 
 .header {
+  font-size: 30px;
   font-weight: bold;
 }
 
-.content {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  height: 100%;
-}
-
-.amounts {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  padding: 20px 0px;
-}
-
-.bigAmount {
-  font-size: 50px;
-  font-weight: bold;
-}
-
-.subAmount {
+.subheader {
   font-size: 20px;
 }
 
-.middle {
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: column;
-  padding: 20px 0px;
-}
-
 .button {
-  background-color: hsla(144, 59%, 39%, 1);
-  border-radius: 30px;
-  margin: 30px 20px;
-  padding: 20px;
-  font-weight: bold;
+  background-color: #289F58;
+  width: 250px;
+  border-radius: 50px;
+  padding: 10px;
+  margin: 20px auto;
+  cursor: pointer;
+  border: none;
+  color: white;
+  font-size: 20px;
 }
 
-/* HOME */
-.homeContainer {
+/* HOME PAGE */
 
-}
+/* PROJECTS */
 
-.homeContent {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start;
-  align-content: flex-start;
-}
-
-/* NIFTY */
-.niftyContainer {
-  border-radius: 10px;
-  height: 150px;
-  width: 150px;
-  background-color: black;
-  margin: 10px;
-}
-
-.niftyImg {
-  position: relative;
-  height: 100%;
-  width: 100%;
-}
-
-.niftyLabel {
-  position: relative;
-  background-color:hsl(0, 6%, 11%, 1);
-  margin: 0px 5px;
-  bottom: 20%;
-}
-
-/* BENEFITS */
-.benefitsContainer {
-  
-}
-
-/* BENEFIT ITEM */
-.benefitItem {
-  background-color: hsl(0, 6%, 11%, .4);
-  margin: 10px 20px;
-  border-radius: 10px;
-  padding: 15px;
-  display: flex;
-}
-
-.benefitImg {
-  height: 70px;
-  margin-right: 10px;
-}
-
-.benefitDetails {
-  display: flex;
-}
-
-.benefitDetailGroup {
+.inputGroup {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  padding: 4px;
-  text-align: left;
+  margin: 20px auto;
+  justify-content: center;
+  align-items: flex-start ;
 }
 
-.benefitDetailHeader {
-  color: darkgrey;
-  font-size: 12px;
-}
-
-.benefitDetailItem {
-
-}
-
-/* SCAN */
-.scanContainer {
-
-}
-
-/* PAY */
-.payContainer {
-  
-}
-
-.payDetailGroup {
-  background-color: hsl(0, 6%, 11%, .4);
+.inputGroupRow {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 15px;
-  text-align: left;
+}
+
+.smallInputGroup {
+  width: 250px;
+}
+
+.inputField {
+  font-size: 20px;
+  background-color: none;
+  padding: 10px;
+  border-radius: 20px;
+  border: 0.5px solid white; 
+  background: none;
+  color: lightgrey;
+  width: 500px;
+  margin: 5px auto;
+}
+
+.smallInputField {
+  width: 230px;
+}
+
+.inputLabel {
+  color: lightgrey;
+  margin: 5px;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 20px auto;
+}
+
+.project {
+  border: 1px solid;
   border-radius: 10px;
-  margin: 5px 20px;
 }
 
-.payDetailItem {
-  font-weight: bold;
-}
+/* ADD BENEFITS */
 
-
-.cta-button {
-  height: 45px;
-  border: 0;
-  width: auto;
-  padding-left: 40px;
-  padding-right: 40px;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.connect-wallet-button {
-  color: white;
-  background: -webkit-linear-gradient(left, #67a9ff, #9452ff);
-  background-size: 200% 200%;
-  animation: gradient-animation 4s ease infinite;
-  max-width: 240px;
-  margin: auto;
-}
+/* CONGRATS */

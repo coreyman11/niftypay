@@ -4,7 +4,7 @@ import {
     Link,
   } from "react-router-dom";
 
-export const Benefits = () => {
+export const Benefits = ()  => {
     const { program } = useContext(AnchorContext);
     const [benefits, setBenefits] = useState([]);
     const getBenefitList = async () => {
@@ -23,7 +23,7 @@ export const Benefits = () => {
     }, [])
     return (
         <div className="connected-container">
-            <Link to="new">Create Benefits</Link>
+            <Link className="button" to="new">Create Benefits</Link>
             <div className="gif-grid">
                 {benefits.map(({ name }, id) => (
                     <div className="gif-item" key={id}>

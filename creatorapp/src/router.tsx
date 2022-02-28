@@ -9,6 +9,7 @@ import { Wallet } from './wallet';
 import { WalletContext } from './provider/walletProvider';
 import { BenefitForm } from './pages/Benefits/form';
 import { Benefits } from './pages/Benefits';
+import { Congrats } from './pages/Home/congrats';
 
 
 export function Router() {
@@ -17,30 +18,33 @@ export function Router() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route index element={<Home />} />
-                <Route path="projects" >
+                <Route index element={<Projects />} />
+                <Route path="new" >
+                    <Route index 
+                        element={<ProjectForm/>} />
+                    <Route
+                        path="benefits"
+                        element={<BenefitForm />}
+                    /> 
+                </Route>
+                <Route path="congrats" element={<Congrats />} />
+                
+                {/* <Route path=":projectId">
                     <Route
                         index
-                        element={<Projects />}
+                        element={<ProjectForm />}
                     />
-                    <Route path="new" element={<ProjectForm />} />
-                    <Route path=":projectId">
+                    <Route path="benefits">
                         <Route
                             index
-                            element={<ProjectForm />}
+                            element={<Benefits />}
                         />
-                        <Route path="benefits">
-                            <Route
-                                index
-                                element={<Benefits />}
-                            />
-                            <Route
-                                path="new"
-                                element={<BenefitForm />}
-                            />
-                        </Route>
+                        <Route
+                            path="new"
+                            element={<BenefitForm />}
+                        />
                     </Route>
-                </Route>
+                </Route> */}
             </Routes>
         </BrowserRouter>
     );
