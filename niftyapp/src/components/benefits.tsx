@@ -3,15 +3,13 @@ import '../App.css';
 import { BenefitItem } from './benefitItem';
 import { Tab } from "../types";
 import { AnchorContext } from "../provider/anchorProvider";
-
-import { createTransaction } from '@solana/pay';
 import { Commitment } from "@solana/web3.js";
-import BigNumber from 'bignumber.js';
 import { getParsedNftAccountsByOwner } from "@nfteyez/sol-rayz";
 import {Connection, clusterApiUrl } from '@solana/web3.js';
 
 interface BenefitProps {
   setTab: (tab: Tab) => void;
+  setProps: (props: any) => void;
   urlData: any
 }
 
@@ -22,19 +20,12 @@ const opts: {preflightCommitment : Commitment } = {
 export const Benefits: React.FC<BenefitProps> = (props) => {
   const { recipient, memo, amount, reference } = props.urlData || {};
   const [nftData, setNftData] = useState<any[]>([]);
-  const [benefitChosen, setBenefitChosen] = useState<any>({ discount: 0});
   const [benefits, setBenefits] = useState<any>([]);
   const [amt, setAmt] = useState((Number(amount || 0)));
-  const finalAmount = new BigNumber((((1 - (benefitChosen.discount * 0.01)) * amt)) || 0); //assuming percentage discount for now
   const { provider, program } = useContext(AnchorContext);
 
-  const sendPayment = async () => {
-    // verify NFT here
-    const tx = await createTransaction(provider.connection, provider.wallet.publicKey, recipient, finalAmount, {
-      reference,
-      memo,
-    });
-    await provider.send(tx);
+  const goToPay = async () => {
+    props.setTab(Tab.Pay)
   }
 
   const getBenefitList = async () => {
@@ -84,6 +75,7 @@ export const Benefits: React.FC<BenefitProps> = (props) => {
         <div className="middle">
           {
             benefitsToShow.map((benefit) => {
+              console.log("benefits to show", benefitsToShow)
               return <BenefitItem />
             })
           }
@@ -91,7 +83,7 @@ export const Benefits: React.FC<BenefitProps> = (props) => {
           <BenefitItem />
         </div>
       </div>
-      <div className="button" onClick={() => sendPayment()}>Next</div>
+      <div className="button" onClick={() => goToPay()}>Next</div>
     </div>
   );
 };

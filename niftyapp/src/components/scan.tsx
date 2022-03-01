@@ -26,6 +26,7 @@ export const Scan: React.FC<ScanProps> = (props) => {
       setUrlData(parseURL(url))
     }
   },[url]);
+  
   return (
     <div className="scanContainer container">
       <div className="top">
