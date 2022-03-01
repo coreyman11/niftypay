@@ -1,0 +1,55 @@
+@import './reset.css';
+@import './vars.pcss';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+@import '../node_modules/@solana/wallet-adapter-react-ui/styles.css';
+
+* {
+    font-family: Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+html {
+    &.light {
+        background: var(--theme-light-background);
+        color: var(--theme-light-text);
+    }
+
+    &.dark {
+        background: var(--theme-dark-background);
+        color: var(--theme-dark-text);
+    }
+
+    & body {
+        text-align: center;
+        background: hsla(165, 77%, 19%, 1);
+        background: linear-gradient(180deg, hsla(165, 77%, 19%, 1) 0%, hsla(257, 31%, 25%, 1) 100%);
+        background: -moz-linear-gradient(180deg, hsla(165, 77%, 19%, 1) 0%, hsla(257, 31%, 25%, 1) 100%);
+        background: -webkit-linear-gradient(180deg, hsla(165, 77%, 19%, 1) 0%, hsla(257, 31%, 25%, 1) 100%);
+        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#0B5442", endColorstr="#372C53", GradientType=1 );
+        min-height: 100vh;
+        & .wallet-adapter-modal {
+            overflow-y: initial;
+        }
+
+        & .wallet-adapter-modal-container {
+            justify-content: flex-end;
+            align-items: flex-start;
+            margin: 24px;
+        }
+    }
+}
+
+body {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 16px;
+}
+
+button {
+    background: none;
+    border: none;
+    color: inherit;
+}
+
+#app {
+    min-height: 100vh;
+}

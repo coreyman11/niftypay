@@ -1,46 +1,85 @@
-# Getting Started with Create React App
+# Point of Sale
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is an example of how you can use the `@solana/pay` JavaScript library to create a simple point of sale system.
 
-## Available Scripts
+You can use the code as a reference or run it yourself to start accepting decentralized payments in-person.
 
-In the project directory, you can run:
+## Prerequisites
 
-### `yarn start`
+To build and run this app locally, you'll need:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+-   Node.js v14.17.0 or above
+-   Yarn
+-   <details>
+        <summary> Setup two wallets on <a href="https://phantom.app">Phantom</a> (Merchant and Customer) </summary>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+    #### 1. Create merchant wallet
 
-### `yarn test`
+    Follow the [guide][1] on how to create a wallet. This wallet will provide the recipient address.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    #### 2. Create customer wallet
 
-### `yarn build`
+    Follow the [guide][1] on how to create another wallet. This wallet will be paying for the goods/services.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    #### 3. Set Phantom to connect to devnet
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    1. Click the settings icon in the Phantom window
+    2. Select the "Change network" option and select "Devnet"
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    #### 4. Airdrop SOL to customer wallet
 
-### `yarn eject`
+    Use [solfaucet][3] to airdrop SOL to the customer wallet.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+    > You'll need SOL in the customer wallet to pay for the goods/services + transaction fees
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+ </details>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Getting Started
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-## Learn More
+### Installing / Set-up
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Clone the repository
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+**With Git**
+
+```shell
+git clone https://github.com/solana-labs/solana-pay.git
+```
+
+**With Github CLI**
+
+```shell
+gh repo clone solana-labs/solana-pay
+```
+
+Install dependencies for point-of-sale
+
+```shell
+cd point-of-sale
+yarn install
+```
+
+## How to run locally
+
+Start the local dev server
+
+```shell
+yarn start
+```
+
+Open the point of sale app
+
+```shell
+open http://localhost:1234?recipient=Your+Merchant+Address&label=Your+Store+Name
+```
+
+## License
+
+The Solana Pay Point of Sale app is open source and available under the Apache License, Version 2.0. See the [LICENSE](./LICENSE) file for more info.
+
+<!-- Links -->
+
+[1]: https://help.phantom.app/hc/en-us/articles/4406388623251-How-to-create-a-new-wallet
+[3]: https://solfaucet.com/
