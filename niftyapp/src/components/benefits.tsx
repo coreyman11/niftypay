@@ -46,7 +46,7 @@ export const Benefits: React.FC<BenefitProps> = (props) => {
         publicAddress: provider.wallet.publicKey,
         connection,
       });
-      console.log(nfts);
+      console.log("NFTs:", nfts);
       setNftData(nfts);
       return nfts;
     } catch (error) {

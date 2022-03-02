@@ -10,6 +10,7 @@ export const BenefitForm = () => {
     const { program, provider } = useContext(AnchorContext);
     const [benefitName, setBenefitName] = useState('');
     const [benefitType, setBenefitType] = useState('');
+    const [businessWallet, setBusinessWallet] = useState('');
     const [discount, setDiscount] = useState('');
     const [frequency, setFrequency] = useState('');
     const createBenefit = async () => {
@@ -21,7 +22,7 @@ export const BenefitForm = () => {
 
             await program.rpc.createBenefit(
                 project.publicKey, 
-                "Cozy Cafe 20%", //name
+                benefitName, //name
                 { freebie: {} }, //benefitType
                 { oneTime: {} }, // frequency
                 2, //allowed usage
@@ -88,6 +89,16 @@ export const BenefitForm = () => {
                         </div>
                     </div>
                     <div className="inputGroup">
+                        <div className="inputLabel">BUSINESS WALLET</div>
+                        <input
+                            className="inputField"
+                            type="text"
+                            placeholder="asr230192ud8hqweqwrqfw982yr31r798qhw"
+                            value={businessWallet}
+                            onChange={(e) => setBusinessWallet(e.target.value)}
+                        />
+                    </div>
+                    <div className="inputGroup">
                         <div className="inputLabel">RENEWAL FREQUENCY</div>
                         <input
                             className="inputField"
@@ -97,8 +108,8 @@ export const BenefitForm = () => {
                             onChange={(e) => setFrequency(e.target.value)}
                         />
                     </div>
-                    <button type="submit" className="button">
-                        <Link to="/congrats" className="button">Create Benefit</Link>
+                    <button type="submit" className="button">Save
+                        {/* <Link to="/congrats" className="button">Create Benefit</Link> */}
                     </button>
                 </form>
             </div>

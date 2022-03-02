@@ -5,6 +5,7 @@ import { createTransaction } from '@solana/pay';
 import { AnchorContext } from "../provider/anchorProvider";
 import BigNumber from 'bignumber.js';
 import { collapseTextChangeRangesAcrossMultipleVersions } from "typescript";
+import { WalletContext } from '../provider/walletProvider';
 
 
 interface PayProps {
@@ -17,18 +18,22 @@ export const Pay: React.FC<PayProps> = (props) => {
   const [amt, setAmt] = useState((Number(amount || 0)));
   const [benefitChosen, setBenefitChosen] = useState<any>({ discount: 0});
   const { provider, program } = useContext(AnchorContext);
+  const { walletAddress, setWalletAddress } = useContext(WalletContext);
   const finalAmount = new BigNumber((((1 - (benefitChosen.discount * 0.01)) * amt)) || 0); //assuming percentage discount for now
 
   useEffect(() => {
     console.log("final amount", finalAmount);
     console.log("benefitchosen", benefitChosen);
     console.log("recipient", recipient.PublicKey)
-    console.log("provide wallet publickey", provider.wallet.publicKey)
+    console.log("provide", provider)
+    console.log("program", program)
     console.log("url data", props.urlData)
+    console.log("wallet address", walletAddress)
   }, []);
 
   const sendPayment = async () => {
     // verify NFT here
+    console.log("sendPayment")
     const tx = await createTransaction(provider.connection, provider.wallet.publicKey, recipient, finalAmount, {
       reference,
       memo,
@@ -59,11 +64,11 @@ export const Pay: React.FC<PayProps> = (props) => {
           </div>
           <div className="payDetailGroup">
             <div className="payDetailHeader">From</div>
-            <div className="payDetailItem"> 58af..Auq8</div>
+            <div className="payDetailItem"> {walletAddress.slice(0,4).concat('...',walletAddress.slice(walletAddress.length-4,walletAddress.length))}</div>
           </div>
           <div className="payDetailGroup">
             <div className="payDetailHeader">To</div>
-            <div className="payDetailItem"> {"recipient"}</div>
+            <div className="payDetailItem"> {"to fix: recipient"}</div>
           </div>
           <div className="payDetailGroup">
             <div className="payDetailHeader">Network Fee</div>
@@ -71,7 +76,7 @@ export const Pay: React.FC<PayProps> = (props) => {
           </div>
         </div>
       </div>
-      <div className="button">Send</div>
+      <div className="button" onClick={() => sendPayment()}>Send</div>
     </div>
   );
 };

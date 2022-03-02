@@ -3,7 +3,7 @@ use anchor_spl::token::{TokenAccount, Mint };
 use std::str::FromStr;
 use spl_token_metadata::state::Metadata;
 
-declare_id!("AWmSTgWatBqQf1Fa9MEgerZm1GmjhFF6fX8WtJGC7uTp");
+declare_id!("8e4xkrZWctiUjc7xexkRFwxUCY5SX6P7mwcN3uHS9iHy");
 
 #[program]
 pub mod niftypay {

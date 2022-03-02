@@ -21,10 +21,10 @@ export function Router() {
                 <Route index element={<Projects />} />
                 <Route path="new" >
                     <Route index 
-                        element={<ProjectForm/>} />
+                        element={<BenefitForm/>} />
                     <Route
                         path="benefits"
-                        element={<BenefitForm />}
+                        element={<ProjectForm />}
                     /> 
                 </Route>
                 <Route path="congrats" element={<Congrats />} />
