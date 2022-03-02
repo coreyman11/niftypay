@@ -13,6 +13,7 @@ export const BenefitForm = () => {
     const { program, provider } = useContext(AnchorContext);
     const [benefitName, setBenefitName] = useState('');
     const [benefitType, setBenefitType] = useState('');
+    const [businessWallet, setBusinessWallet] = useState('');
     const [discount, setDiscount] = useState('');
     const [frequency, setFrequency] = useState('');
     const [businessOwner, setBusinessOwner] = useState('');
@@ -103,6 +104,16 @@ export const BenefitForm = () => {
                                 onChange={(e) => setDiscount(e.target.value)}
                             />
                         </div>
+                    </div>
+                    <div className="inputGroup">
+                        <div className="inputLabel">BUSINESS WALLET</div>
+                        <input
+                            className="inputField"
+                            type="text"
+                            placeholder="asr230192ud8hqweqwrqfw982yr31r798qhw"
+                            value={businessWallet}
+                            onChange={(e) => setBusinessWallet(e.target.value)}
+                        />
                     </div>
                     <div className="inputGroup">
                         <div className="inputLabel">RENEWAL FREQUENCY</div>

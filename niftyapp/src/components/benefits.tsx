@@ -3,15 +3,13 @@ import '../App.css';
 import { BenefitItem } from './benefitItem';
 import { Tab } from "../types";
 import { AnchorContext } from "../provider/anchorProvider";
-
-import { createTransaction } from '@solana/pay';
 import { Commitment } from "@solana/web3.js";
-import BigNumber from 'bignumber.js';
 import { getParsedNftAccountsByOwner } from "@nfteyez/sol-rayz";
-import {Connection, clusterApiUrl } from '@solana/web3.js';
+import { Connection, clusterApiUrl } from '@solana/web3.js';
 
 interface BenefitProps {
   setTab: (tab: Tab) => void;
+  setProps: (props: any) => void;
   urlData: any
 }
 
@@ -22,19 +20,15 @@ const opts: {preflightCommitment : Commitment } = {
 export const Benefits: React.FC<BenefitProps> = (props) => {
   const { recipient, memo, amount, reference } = props.urlData || {};
   const [nftData, setNftData] = useState<any[]>([]);
-  const [benefitChosen, setBenefitChosen] = useState<any>({ discount: 0});
   const [benefits, setBenefits] = useState<any>([]);
+  const [benefitChosen, setBenefitChosen] = useState<any>([]);
   const [amt, setAmt] = useState((Number(amount || 0)));
-  const finalAmount = new BigNumber((((1 - (benefitChosen.discount * 0.01)) * amt)) || 0); //assuming percentage discount for now
   const { provider, program } = useContext(AnchorContext);
+  const [urlData, setUrlData] = useState({});
 
-  const sendPayment = async () => {
-    // verify NFT here
-    const tx = await createTransaction(provider.connection, provider.wallet.publicKey, recipient, finalAmount, {
-      reference,
-      memo,
-    });
-    await provider.send(tx);
+  const goToPay = async () => {
+    props.setTab(Tab.Pay)
+    props.setProps({ urlData, benefitChosen })
   }
 
   const getBenefitList = async () => {
@@ -42,7 +36,6 @@ export const Benefits: React.FC<BenefitProps> = (props) => {
       const benefits = await program.account.benefit.all();
       console.log("Got the benefits", benefits)
       setBenefits(benefits.map(p => p.account))
-
     } catch (error) {
       console.log("error", error);
     }
@@ -55,20 +48,32 @@ export const Benefits: React.FC<BenefitProps> = (props) => {
         publicAddress: provider.wallet.publicKey,
         connection,
       });
-      console.log(nfts);
+      console.log("NFTs:", nfts);
       setNftData(nfts);
       return nfts;
     } catch (error) {
       console.log(error);
     }
   };
+
+  const chooseBenefit = async (benefit) => {
+    setBenefitChosen(benefit);
+    console.log("benefit chosen:", benefitChosen)
+  }
+  
   useEffect(() => {
+    setUrlData(props.urlData)
     getAllNftData();
     getBenefitList();
+    setBenefitChosen(benefits[0])
+    console.log("benefit chosen", benefitChosen)
+    console.log("urldata", props.urlData)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const benefitsToShow = benefits.filter(benefit => (nftData.findIndex(nft => (nft.mint === benefit.mint)) >= 0));
+  // const benefitsToShow = benefits.filter(benefit => (nftData.findIndex(nft => (nft.mint === benefit.mint)) >= 0));
+  // Add when filtering is ready
+
   return (
     <div className="benefitsContainer container">
       <div className="top">
@@ -83,15 +88,23 @@ export const Benefits: React.FC<BenefitProps> = (props) => {
         </div>
         <div className="middle">
           {
-            benefitsToShow.map((benefit) => {
-              return <BenefitItem />
+            benefits.map((benefit) => {
+              console.log("benefits to show", benefit)
+              return (
+                <BenefitItem {...props}
+                  onClick={() => chooseBenefit(benefit)}
+                  key={benefit.name}
+                  benefitName={benefit.name}
+                  businessOwner={benefit.businessOwner}
+                  claimable={benefit.allowedUsage}
+                  discount={benefit.discount}
+                />
+              )
             })
           }
-          <BenefitItem />
-          <BenefitItem />
         </div>
       </div>
-      <div className="button" onClick={() => sendPayment()}>Next</div>
+      <div className="button" onClick={() => goToPay()}>Next</div>
     </div>
   );
 };

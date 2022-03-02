@@ -20,7 +20,7 @@ const renderTab = (tab: Tab, setTab: (tab: Tab) => void, props: any, setProps: (
     case Tab.Scan:
       return <Scan {...props} setTab={setTab} setProps={setProps}/>;
     case Tab.Pay:
-      return <Pay setTab={setTab}/>;
+      return <Pay {...props }setTab={setTab} setProps={setProps} />;
     default:
       return null;
   }

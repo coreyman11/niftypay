@@ -26,6 +26,7 @@ export const Scan: React.FC<ScanProps> = (props) => {
       setUrlData(parseURL(url))
     }
   },[url]);
+  
   return (
     <div className="scanContainer container">
       <div className="top">
@@ -33,7 +34,11 @@ export const Scan: React.FC<ScanProps> = (props) => {
         <p className="header">Scan QR Code</p>
         <p>&nbsp; &nbsp; &nbsp;</p>
       </div>
-      <div className="content" onClick={() => {props.setTab(Tab.Benefits); props.setProps({ urlData })}}>
+      <div className="content" 
+        onClick={() => {
+          props.setTab(Tab.Benefits); 
+          props.setProps({ urlData })
+        }}>
         {!url && <QrReader
           delay={200}
           onError={console.error}
