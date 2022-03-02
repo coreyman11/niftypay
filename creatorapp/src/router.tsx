@@ -22,10 +22,12 @@ export function Router() {
                 <Route path="new" >
                     <Route index 
                         element={<ProjectForm/>} />
-                    <Route
-                        path="benefits"
-                        element={<BenefitForm />}
-                    /> 
+                </Route>
+                <Route path=":projectId">
+                        <Route
+                            path="new"
+                            element={<BenefitForm />}
+                        />
                 </Route>
                 <Route path="congrats" element={<Congrats />} />
                 

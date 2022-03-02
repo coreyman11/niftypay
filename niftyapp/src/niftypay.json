@@ -120,6 +120,10 @@
         {
           "name": "businessOwner",
           "type": "publicKey"
+        },
+        {
+          "name": "nftMint",
+          "type": "publicKey"
         }
       ]
     }
@@ -166,6 +170,10 @@
           },
           {
             "name": "businessOwner",
+            "type": "publicKey"
+          },
+          {
+            "name": "mint",
             "type": "publicKey"
           },
           {

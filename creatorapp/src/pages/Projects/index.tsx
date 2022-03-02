@@ -11,7 +11,12 @@ export const Projects = () => {
         try {
             const projects = await program.account.project.all();
             console.log("Got the projects", projects)
-            setProjects(projects.map((p: { account: any; }) => p.account))
+            setProjects(projects.map((p: { account: any; publicKey: any }) => {
+                return {
+                    id: p.publicKey.toBase58(),
+                    ...p.account
+                }
+            }))
 
         } catch (error) {
             console.log("error", error);
@@ -31,7 +36,7 @@ export const Projects = () => {
             <div className="header">Your Nifty Collections</div>
             <div className="subheader">You have no collections with Nifty Pay benefits... yet.</div>
             <div className="gif-grid">
-                {projects.map(({ name }, id) => (
+                {projects.map(({ name, id }) => (
                     <div className="project" key={id}>
                         <div className="projectName">{name}</div>
                         <div className="projectButton"><Link to={id + "/new"}>Add a Benefit</Link></div>

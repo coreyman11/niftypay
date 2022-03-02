@@ -2,31 +2,36 @@ import { useState, useContext } from "react";
 import { AnchorContext } from "../../provider/anchorProvider";
 import { web3 } from '@project-serum/anchor';
 import {
-    Link,
+    Link,  useParams, useNavigate
   } from "react-router-dom";
+import { PublicKey } from "@solana/web3.js";
 
 
 export const BenefitForm = () => {
+    const params = useParams();
+    const navigate = useNavigate();
     const { program, provider } = useContext(AnchorContext);
     const [benefitName, setBenefitName] = useState('');
     const [benefitType, setBenefitType] = useState('');
     const [discount, setDiscount] = useState('');
     const [frequency, setFrequency] = useState('');
+    const [businessOwner, setBusinessOwner] = useState('');
+
+    const projectPubkey = new PublicKey(params.projectId || '');
     const createBenefit = async () => {
         try {
-            const project = web3.Keypair.generate();
-
-            const benefit = web3.Keypair.generate();
-            const business_owner = web3.Keypair.generate();
-
+           const projectAccount = await program.account.project.fetch(projectPubkey);
+            const benefit = web3.Keypair.generate(); 
             await program.rpc.createBenefit(
-                project.publicKey, 
-                "Cozy Cafe 20%", //name
-                { freebie: {} }, //benefitType
+                projectPubkey, 
+                benefitName, //name
+                { percentageDiscount: {} }, //benefitType
                 { oneTime: {} }, // frequency
                 2, //allowed usage
-                20, //discount %
-                business_owner.publicKey, {
+                discount, //discount %
+                new PublicKey(businessOwner),
+                projectAccount.contractId,
+                {
                 accounts: {
                     benefit: benefit.publicKey,
                     creator: provider.wallet.publicKey,
@@ -34,6 +39,8 @@ export const BenefitForm = () => {
                 },
                 signers: [benefit],
             });
+
+            navigate('/congrats');
 
         } catch (error) {
             console.log("error", error);
@@ -64,6 +71,16 @@ export const BenefitForm = () => {
                             placeholder="Starbucks and Mycoverse NFT 20% Discount"
                             value={benefitName}
                             onChange={(e) => setBenefitName(e.target.value)}
+                        />
+                    </div>
+                    <div className="inputGroup">
+                        <div className="inputLabel">Business wallet Address</div>
+                        <input
+                            className="inputField"
+                            type="text"
+                            placeholder="0xkaj92jspigp9jrin093rjf0935018hfqw8rjqowir"
+                            value={businessOwner}
+                            onChange={(e) => setBusinessOwner(e.target.value)}
                         />
                     </div>
                     <div className="inputGroupRow">
@@ -98,7 +115,7 @@ export const BenefitForm = () => {
                         />
                     </div>
                     <button type="submit" className="button">
-                        <Link to="/congrats" className="button">Create Benefit</Link>
+                        Create Benefit
                     </button>
                 </form>
             </div>

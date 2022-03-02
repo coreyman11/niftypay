@@ -43,6 +43,7 @@ describe('niftypay', () => {
    
     const benefit = anchor.web3.Keypair.generate();
     const business_owner = anchor.web3.Keypair.generate();
+    const mint = anchor.web3.Keypair.generate();
     
     await program.rpc.createBenefit(
       project.publicKey,
@@ -51,7 +52,9 @@ describe('niftypay', () => {
       { oneTime: {} },
       2,
       20,
-      business_owner.publicKey, {
+      business_owner.publicKey,
+      mint.publicKey,
+       {
       accounts: {
         benefit: benefit.publicKey,
         creator: program.provider.wallet.publicKey,
@@ -63,25 +66,26 @@ describe('niftypay', () => {
     // Fetch the account details of the created project.
     const benefitAccount = await program.account.benefit.fetch(benefit.publicKey);
 
-    const [benefitAccount2] = await program.account.benefit.all([
-      {
-        memcmp: {
-          offset: 8,
-          bytes: project.publicKey.toBase58(),
-        }
-      },
-      {
-        memcmp: {
-          offset: 40,
-          bytes: project.publicKey.toBase58(),
-        }
-      }
-    ]);
+    // const [benefitAccount2] = await program.account.benefit.all([
+    //   {
+    //     memcmp: {
+    //       offset: 8,
+    //       bytes: project.publicKey.toBase58(),
+    //     }
+    //   },
+    //   {
+    //     memcmp: {
+    //       offset: 40,
+    //       bytes: project.publicKey.toBase58(),
+    //     }
+    //   }
+    // ]);
 
 
+    console.log(benefitAccount);
     // // Ensure it has the right data.
     assert.equal(benefitAccount.creator.toBase58(), program.provider.wallet.publicKey.toBase58());
-    assert.equal(benefitAccount2.account.creator.toBase58(), program.provider.wallet.publicKey.toBase58());
+    // assert.equal(benefitAccount2.account.creator.toBase58(), program.provider.wallet.publicKey.toBase58());
     // assert.equal(projectAccount.name, 'Cozy Cafe 20%');
   });
 

@@ -1,13 +1,15 @@
 import { useState, useContext, useEffect } from "react";
 import { AnchorContext } from "../../provider/anchorProvider";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import {web3} from '@project-serum/anchor';
 import {
     Link,
   } from "react-router-dom";
+  import {PublicKey } from '@solana/web3.js';
 
 export const ProjectForm = () => {
     let params = useParams();
+    const navigate = useNavigate();
     const { program, provider } = useContext(AnchorContext);
     const [collectionName, setCollectionName] = useState('');
     const [collectionId, setCollectionId] = useState('');
@@ -18,9 +20,7 @@ export const ProjectForm = () => {
         try {
             const creator = provider.wallet.publicKey;
             const project = web3.Keypair.generate();
-            const nftAddress = web3.Keypair.generate();
-            const member1 = web3.Keypair.generate();
-            await program.rpc.createProject('Magnum Opus', nftAddress.publicKey, [member1.publicKey], {
+            await program.rpc.createProject(collectionName, new PublicKey(collectionId), [new PublicKey(walletId1)], {
                 accounts: {
                     project: project.publicKey,
                     creator,
@@ -29,6 +29,7 @@ export const ProjectForm = () => {
                 signers: [project],
             });
             console.log("Got the projects", project);
+            navigate('/');
 
         } catch (error) {
             console.log("error", error);
@@ -100,7 +101,7 @@ export const ProjectForm = () => {
                     </div>
 
                     <button type="submit" className="button">
-                        <Link to="/" className="button"> Create Collection</Link>
+                        Create Collection
                     </button>
                 </form>
             </div>

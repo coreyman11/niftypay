@@ -85,7 +85,7 @@ pub mod niftypay {
 
         Ok(())
     }
-    pub fn create_benefit(ctx: Context<CreateBenefit>, project_id: Pubkey, name: String, benefit_type: BenefitType, frequency: Frequency, allowed_usage: u8, discount: u8, business_owner: Pubkey,) -> ProgramResult {
+    pub fn create_benefit(ctx: Context<CreateBenefit>, project_id: Pubkey, name: String, benefit_type: BenefitType, frequency: Frequency, allowed_usage: u8, discount: u8, business_owner: Pubkey, nft_mint: Pubkey,) -> ProgramResult {
         let benefit: &mut Account<Benefit> = &mut ctx.accounts.benefit;
         let creator: &Signer = &ctx.accounts.creator;
         let clock: Clock = Clock::get().unwrap();
@@ -103,6 +103,7 @@ pub mod niftypay {
         benefit.frequency = frequency;
         benefit.discount = discount;
         benefit.business_owner = business_owner;
+        benefit.mint = nft_mint;
 
         Ok(())
     }
@@ -170,6 +171,7 @@ pub struct Benefit {
     pub project_id: Pubkey,
     pub creator: Pubkey,
     pub business_owner: Pubkey,
+    pub mint: Pubkey,
     pub name: String,
     pub benefit_type: BenefitType,
     pub allowed_usage: u8,
@@ -193,6 +195,7 @@ impl Benefit {
     const LEN: usize = DISCRIMINATOR_LENGTH
         + PUBLIC_KEY_LENGTH // creator.
         + PUBLIC_KEY_LENGTH // business_owner.
+        + PUBLIC_KEY_LENGTH // mint.
         + PUBLIC_KEY_LENGTH // project_id.
         + TIMESTAMP_LENGTH // Timestamp.
         + ALLOWED_USAGE_LENGTH // Allowed usage.
