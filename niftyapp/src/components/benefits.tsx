@@ -5,7 +5,7 @@ import { Tab } from "../types";
 import { AnchorContext } from "../provider/anchorProvider";
 import { Commitment } from "@solana/web3.js";
 import { getParsedNftAccountsByOwner } from "@nfteyez/sol-rayz";
-import {Connection, clusterApiUrl } from '@solana/web3.js';
+import { Connection, clusterApiUrl } from '@solana/web3.js';
 
 interface BenefitProps {
   setTab: (tab: Tab) => void;

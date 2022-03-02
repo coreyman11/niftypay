@@ -22,24 +22,13 @@ export const Pay: React.FC<PayProps> = (props) => {
   const { provider, program } = useContext(AnchorContext);
   const { walletAddress, setWalletAddress } = useContext(WalletContext);
   const [finalAmount, setFinalAmount] = useState<any>(amt);
-  // const finalAmount = new BigNumber((((1 - (benefitChosen.discount * 0.01)) * amt)) || 0); //assuming percentage discount for now
 
   useEffect(() => {
     console.log("props benefit chosen discount", props.benefitChosen)
     if (props.benefitChosen != undefined) {
-      console.log("there is benefit chosen")
       setBenefitChosen(props.benefitChosen)
       setFinalAmount(((1 - (props.benefitChosen.discount * 0.01)) * amt));
     }
-
-    console.log("benefitchosen", benefitChosen);
-    console.log("finalamount", finalAmount);
-
-    // console.log("recipient", recipient.PublicKey)
-    // console.log("provide", provider)
-    // console.log("program", program)
-    // console.log("url data", props.urlData)
-    // console.log("wallet address", walletAddress)
   }, []);
 
   const sendPayment = async () => {

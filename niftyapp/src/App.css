@@ -91,12 +91,13 @@ body {
   border-radius: 10px;
   height: 150px;
   width: 150px;
-  background-color: black;
+  background-color: white;
   margin: 10px;
 }
 
 .niftyImg {
   position: relative;
+  border-radius: 10px;
   height: 100%;
   width: 100%;
 }
