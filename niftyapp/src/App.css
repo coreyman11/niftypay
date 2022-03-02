@@ -129,6 +129,12 @@ body {
 
 .benefitDetails {
   display: flex;
+  flex-direction: column;
+}
+
+.benefitDetailsTop, .benefitDetailsBottom {
+  display: flex;
+  flex-direction: row;
 }
 
 .benefitDetailGroup {

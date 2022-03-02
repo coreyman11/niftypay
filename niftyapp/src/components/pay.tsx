@@ -10,7 +10,9 @@ import { WalletContext } from '../provider/walletProvider';
 
 interface PayProps {
   setTab: (tab: Tab) => void;
+  setProps: (props: any) => void;
   urlData: any
+  benefitChosen: any
 }
 
 export const Pay: React.FC<PayProps> = (props) => {
@@ -19,22 +21,31 @@ export const Pay: React.FC<PayProps> = (props) => {
   const [benefitChosen, setBenefitChosen] = useState<any>({ discount: 0});
   const { provider, program } = useContext(AnchorContext);
   const { walletAddress, setWalletAddress } = useContext(WalletContext);
-  const finalAmount = new BigNumber((((1 - (benefitChosen.discount * 0.01)) * amt)) || 0); //assuming percentage discount for now
+  const [finalAmount, setFinalAmount] = useState<any>(amt);
+  // const finalAmount = new BigNumber((((1 - (benefitChosen.discount * 0.01)) * amt)) || 0); //assuming percentage discount for now
 
   useEffect(() => {
-    console.log("final amount", finalAmount);
+    console.log("props benefit chosen discount", props.benefitChosen)
+    if (props.benefitChosen != undefined) {
+      console.log("there is benefit chosen")
+      setBenefitChosen(props.benefitChosen)
+      setFinalAmount(((1 - (props.benefitChosen.discount * 0.01)) * amt));
+    }
+
     console.log("benefitchosen", benefitChosen);
-    console.log("recipient", recipient.PublicKey)
-    console.log("provide", provider)
-    console.log("program", program)
-    console.log("url data", props.urlData)
-    console.log("wallet address", walletAddress)
+    console.log("finalamount", finalAmount);
+
+    // console.log("recipient", recipient.PublicKey)
+    // console.log("provide", provider)
+    // console.log("program", program)
+    // console.log("url data", props.urlData)
+    // console.log("wallet address", walletAddress)
   }, []);
 
   const sendPayment = async () => {
     // verify NFT here
     console.log("sendPayment")
-    const tx = await createTransaction(provider.connection, provider.wallet.publicKey, recipient, finalAmount, {
+    const tx = await createTransaction(provider.connection, provider.wallet.publicKey, recipient, new BigNumber(finalAmount), {
       reference,
       memo,
     });
@@ -50,18 +61,21 @@ export const Pay: React.FC<PayProps> = (props) => {
       </div>
       <div className="content">
         <div className="amounts">
-          <div className="bigAmount">{amt} USDC</div>
-          <div className="subAmount">${amt}</div>
+          <div className="bigAmount">{finalAmount} USDC</div>
+          <div className="subAmount">${finalAmount}</div>
         </div>
         <div className="middle">
           <div className="payDetailGroup">
             <div className="payDetailHeader">Original Amount</div>
             <div className="payDetailItem"> ${amt}</div>
           </div>
+          {benefitChosen.discount != 0 ? 
           <div className="payDetailGroup">
             <div className="payDetailHeader">NFT Benefit</div>
-            <div className="payDetailItem"> {benefitChosen.discount}</div>
-          </div>
+            <div className="payDetailItem"> {benefitChosen.discount}% Discount</div>
+          </div> :
+          ""
+          }
           <div className="payDetailGroup">
             <div className="payDetailHeader">From</div>
             <div className="payDetailItem"> {walletAddress.slice(0,4).concat('...',walletAddress.slice(walletAddress.length-4,walletAddress.length))}</div>
@@ -69,10 +83,6 @@ export const Pay: React.FC<PayProps> = (props) => {
           <div className="payDetailGroup">
             <div className="payDetailHeader">To</div>
             <div className="payDetailItem"> {"to fix: recipient"}</div>
-          </div>
-          <div className="payDetailGroup">
-            <div className="payDetailHeader">Network Fee</div>
-            <div className="payDetailItem"> $0.00001</div>
           </div>
         </div>
       </div>

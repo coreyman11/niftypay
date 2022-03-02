@@ -1,26 +1,38 @@
-import { useState } from "react";
 import '../App.css';
+import { useState, useContext, useEffect } from "react";
 
-export const BenefitItem = () => {
+interface BenefitItemsProps {
+  benefitName: any
+  businessOwner: any
+  claimable: any
+  discount: number
+  onClick: () => void;
+}
+
+export const BenefitItem: React.FC<BenefitItemsProps> = (props) => {
+
+  useEffect(() => {
+    console.log("Benefit: ", props.benefitName)
+  }, [])
 
   return (
-    <div className="benefitItem">
+    <div onClick={props.onClick} className="benefitItem">
       <img src="./logo192.png" className="benefitImg"/>
       <div className="benefitDetails">
         <div className="benefitDetailsTop">
           <div className="benefitDetailGroup">
-            <div className="benefitDetailHeader">BUSINESS</div>
-            <div className="benefitDetailItem">Le Boulangerie</div>
-          </div>
-          <div className="benefitDetailGroup">
-            <div className="benefitDetailHeader">FREQUENCY</div>
-            <div className="benefitDetailItem">Renews Weekly</div>
+            <div className="benefitDetailHeader">NAME OF BENEFIT</div>
+            <div className="benefitDetailItem">{props.benefitName}</div>
           </div>
         </div>
         <div className="benefitDetailsBottom">
-          <div className="benefitDetailGroup">
+         <div className="benefitDetailGroup">
             <div className="benefitDetailHeader">BENEFIT</div>
-            <div className="benefitDetailItem">$10 Discount</div>
+            <div className="benefitDetailItem">{props.discount}% Discount</div>
+          </div>
+          <div className="benefitDetailGroup">
+            <div className="benefitDetailHeader">CLAIMABLE</div>
+            <div className="benefitDetailItem">{props.claimable}</div>
           </div>
         </div>
       </div>
