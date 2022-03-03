@@ -9,7 +9,7 @@ declare_id!("8e4xkrZWctiUjc7xexkRFwxUCY5SX6P7mwcN3uHS9iHy");
 pub mod niftypay {
     use super::*;
     pub fn verify_nft(ctx: Context<VerifyNFT>) -> ProgramResult {
-
+    
         let nft_token_account = &ctx.accounts.nft_token_account;
         let user = &ctx.accounts.user;
         let nft_mint_account = &ctx.accounts.nft_mint;
@@ -225,3 +225,26 @@ pub enum ErrorCode {
 //Links
 //https://docs.metaplex.com/architecture/deep_dive/overview Link to the metaplex docs
 //https://medium.com/metaplex/metaplex-metadata-standard-45af3d04b541 link to metaplex PDA structure
+
+/*
+var solRpcConditions = [
+  {
+    method: "GetTokenAccountsByOwner",
+    params: [
+      ":userAddress",
+      {
+        programId: "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+      },
+      {
+        encoding: "jsonParsed",
+      },
+    ],
+    chain: 'solana',
+    returnValueTest: {
+      key: '$[?(@.account.data.parsed.info.mint == "29G6GSKNGP8K6ATy65QrNZk4rNgsZX1sttvb5iLXWDcE")].account.data.parsed.info.tokenAmount.amount',
+      comparator: ">",
+      value: "0",
+    },
+  },
+];
+*/
