@@ -113,9 +113,41 @@ body {
   margin: 20px auto;
 }
 
-.project {
-  border: 1px solid;
+.boxGrid {
+  display: flex;
+  flex-direction: column; 
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 0px;
   border-radius: 10px;
+  width: 400px;
+  padding: 20px; 
+  margin: 20px auto;
+  background-color: hsl(0, 6%, 11%, .4);
+}
+
+.boxHeader {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.secondaryButton {
+  background-color: white;
+  opacity: 0.8;
+  color: black;
+  width: 150px;
+  border-radius: 50px;
+  padding: 10px;
+  margin: 20px auto;
+  cursor: pointer;
+  border: none;
+  font-size: 20px;
 }
 
 /* ADD BENEFITS */

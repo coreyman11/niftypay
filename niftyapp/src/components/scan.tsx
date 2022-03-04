@@ -2,31 +2,18 @@ import { useEffect, useState } from "react";
 import '../App.css';
 import { Tab } from "../types";
 import { parseURL } from '@solana/pay';
-const QrReader = require('react-qr-scanner');
+import Html5QrcodePlugin from "./scanner";
 
 interface ScanProps {
   setTab: (tab: Tab) => void;
   setProps: (props: any) => void;
 }
 
-//hard coding pay url for now. Remove this for Scanner
-// const PAY_URL =
-//     'solana:5afYu95S6zyo7CwzLhqy2TYyL83aBTK6uVVeqrutj5Dq?amount=0.01&reference=UZVpbo8tMziKMvbAC6FgTFGntqKgvQMv2GuaExEPSDf&label=Michael&message=Thanks%20for%20all%20the%20fish&memo=OrderId5678';
 export const Scan: React.FC<ScanProps> = (props) => {
-  const [url, setUrl] = useState('');
-  const [urlData, setUrlData] = useState({});
-
-  useEffect(() => {
-    // setUrl(PAY_URL);
-    return () => setUrl('');
-  },[]);
-
-  useEffect(() => {
-    if(url) {
-      setUrlData(parseURL(url))
-    }
-  },[url]);
-  
+  const onSuccess = (data) => {
+      props.setTab(Tab.Benefits); 
+      props.setProps({ urlData: parseURL(data) })
+  }
   return (
     <div className="scanContainer container">
       <div className="top">
@@ -34,18 +21,14 @@ export const Scan: React.FC<ScanProps> = (props) => {
         <p className="header">Scan QR Code</p>
         <p>&nbsp; &nbsp; &nbsp;</p>
       </div>
-      <div className="content" 
-        onClick={() => {
-          props.setTab(Tab.Benefits); 
-          props.setProps({ urlData })
-        }}>
-        {!url && <QrReader
-          // delay={200}
-          onError={console.error}
-          onScan={(data: any) => { console.log(data); setUrl(data?.text) }}
+      <div className="content qrContainer">
+        <Html5QrcodePlugin
+          fps={10}
+          qrbox={300}
+          disableFlip={false}
+          qrCodeSuccessCallback={onSuccess}
+          verbose
         />
-        }
-        <p>{url}</p>
       </div>
     </div>
   );

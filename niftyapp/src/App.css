@@ -162,6 +162,53 @@ body {
 
 }
 
+.qrContainer {
+  margin: 10px;
+  border-radius: 10px;
+}
+
+#html5qr-code-full-region {
+  border-radius: 10px;
+  background: hsl(0, 6%, 11%, .4);
+  padding: 20px;
+  border: 0px !important; 
+  font-size: 16px;
+}
+
+#html5qr-code-full-region__scan_region img {
+  color: white;
+}
+
+#html5qr-code-full-region__scan_region video {
+  border-radius: 10px 10px 0px 0px;
+}
+
+#html5qr-code-full-region__dashboard_section_swaplink {
+  color: white;
+}
+
+#html5qr-code-full-region__camera_selection {
+  font-size: 16px;
+  border-radius: 20px;
+  padding: 10px;
+  width: 90%;
+}
+
+#html5qr-code-full-region__dashboard_section_csr button {
+  background-color: hsla(144, 59%, 39%, 1);
+  border-radius: 30px;
+  margin: 30px 20px;
+  padding: 20px;
+  font-weight: bold;
+  border: 0;
+  width: auto;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: Inter;
+}
+
 /* PAY */
 .payContainer {
   

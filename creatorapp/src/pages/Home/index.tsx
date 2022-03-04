@@ -7,7 +7,7 @@ export const Home = () => {
         <div className="homeContainer container">
             <div className="topArea">
                 <div className="arrowArea"> {"<-"} </div>
-                <div className="walletArea">{provider.wallet.publicKey}</div>
+                <div className="walletArea">{provider.wallet.publicKey.toBase58().slice(0,4).concat('...',provider.wallet.publicKey.toBase58().slice(provider.wallet.publicKey.toBase58().length-4,provider.wallet.publicKey.toBase58().length))}</div>
             </div>
             <div className="header">Your Nifty Collections</div>
             <div className="subheader">You have no collections with Nifty Pay benefits... yet.</div>

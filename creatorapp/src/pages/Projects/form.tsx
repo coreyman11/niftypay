@@ -11,6 +11,7 @@ export const ProjectForm = () => {
     let params = useParams();
     const navigate = useNavigate();
     const { program, provider } = useContext(AnchorContext);
+    const [userWallet, setUserWallet] = useState('');
     const [collectionName, setCollectionName] = useState('');
     const [collectionId, setCollectionId] = useState('');
     const [walletId1, setWalletId1] = useState('');
@@ -36,14 +37,15 @@ export const ProjectForm = () => {
         }
     }
     useEffect(() => {
+        console.log("wallet", provider.wallet.publicKey)
         if(params.projectId === 'new') return;
-
+        setUserWallet(provider.wallet.publicKey.toBase58().slice(0,4).concat('...',provider.wallet.publicKey.toBase58().slice(provider.wallet.publicKey.toBase58().length-4,provider.wallet.publicKey.toBase58().length)))
     }, [params.projectId]);
     return (
         <div className="addProjectContainer container connected-container">
             <div className="topArea">
                 <div className="arrowArea"><Link className="arrowLink" to="/">{"<-"}</Link> </div>
-                <div className="walletArea">7aht...2bf9</div>
+                <div className="walletArea">{userWallet}</div>
             </div>
             <div className="header">Add a Collection</div>
             <div className="subheader">Choose a collection you’re the owner of or add your collection manually.</div>
@@ -66,7 +68,7 @@ export const ProjectForm = () => {
                         />
                     </div>
                     <div className="inputGroup">
-                        <div className="inputLabel">COLLECTION ID</div>
+                        <div className="inputLabel">NFT TOKEN ADDRESS</div>
                         <input
                             className="inputField"
                             type="text"

@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { AnchorContext } from "../../provider/anchorProvider";
 import { web3 } from '@project-serum/anchor';
 import {
@@ -17,6 +17,7 @@ export const BenefitForm = () => {
     const [discount, setDiscount] = useState('');
     const [frequency, setFrequency] = useState('');
     const [businessOwner, setBusinessOwner] = useState('');
+    const [userWallet, setUserWallet] = useState('');
 
     const projectPubkey = new PublicKey(params.projectId || '');
     const createBenefit = async () => {
@@ -48,11 +49,15 @@ export const BenefitForm = () => {
         }
     }
     
+    useEffect(() => {
+        setUserWallet(provider.wallet.publicKey.toBase58().slice(0,4).concat('...',provider.wallet.publicKey.toBase58().slice(provider.wallet.publicKey.toBase58().length-4,provider.wallet.publicKey.toBase58().length)));
+    }, []);
+
     return (
         <div className="addProjectContainer container connected-container">
             <div className="topArea">
                 <div className="arrowArea"><Link className="arrowLink" to="/">{"<-"}</Link> </div>
-                <div className="walletArea">7aht...2bf9</div>
+                <div className="walletArea">{userWallet}</div>
             </div>
             <div className="header">Add Benefits to this Collection</div>
             <div className="subheader">What benefits do you want this NFT collection to give to holders?</div>

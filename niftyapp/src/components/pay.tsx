@@ -71,7 +71,7 @@ export const Pay: React.FC<PayProps> = (props) => {
           </div>
           <div className="payDetailGroup">
             <div className="payDetailHeader">To</div>
-            <div className="payDetailItem"> {recipient.toBase58()}</div>
+            <div className="payDetailItem"> {recipient.slice(0,4).concat('...',recipient.slice(recipient.length-4,recipient.length))}</div>
           </div>
         </div>
       </div>

@@ -46,8 +46,8 @@ export const Home: React.FC<HomeProps> = (props) => {
         <img src="./qricon.png" height="30px" className="backArrow" onClick={() => props.setTab(Tab.Scan)}></img>
       </div>
       <div className="content homeContent">
-        {
-          nftData.map((nft) => {
+        {nftData === [] ? 
+          (nftData.map((nft) => {
             console.log("benefits to show", nft)
             return (
               <Nifty 
@@ -55,7 +55,8 @@ export const Home: React.FC<HomeProps> = (props) => {
                 jsonRawData={nft.data.uri}
               />
             )
-          })
+          })) : 
+          "You have no NFTs in this wallet."
         }
       </div>
     </div>
