@@ -3,16 +3,17 @@ import QRCodeStyling from 'qr-code-styling';
 import React, { FC, useLayoutEffect, useMemo, useRef } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { usePayment } from '../../hooks/usePayment';
-import { useTheme } from '../../hooks/useTheme';
+// import { useTheme } from '../../hooks/useTheme';
 
 export const QRCode: FC = () => {
     const phone = useMediaQuery({ query: '(max-width: 767px)' });
-    const size = useMemo(() => (phone && typeof window !== 'undefined' ? window.screen.availWidth - 48 : 400), [phone]);
-    const { theme } = useTheme();
-    const [background, color] = useMemo(
-        () => (theme === 'light' ? ['#eff2f3', '#2a2a2a'] : ['#2a2a2a', '#eef5f6']),
-        [theme]
-    );
+    const size = useMemo(() => (phone && typeof window !== 'undefined' ? window.screen.availWidth - 48 : 450), [phone]);
+    // const { theme } = useTheme();
+    const [background, color] = ['#eff2f3', '#2a2a2a'];
+    // useMemo(
+        // () => (theme === 'light' ? ['#eff2f3', '#2a2a2a'] : ['#2a2a2a', '#eef5f6']),
+        // [theme]
+    // );
     const { url } = usePayment();
     const options = useMemo(() => createQROptions(url, size, background, color), [url, size, background, color]);
 

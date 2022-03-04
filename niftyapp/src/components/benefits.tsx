@@ -68,6 +68,7 @@ export const Benefits: React.FC<BenefitProps> = (props) => {
     setBenefitChosen(benefits[0])
     console.log("benefit chosen", benefitChosen)
     console.log("urldata", props.urlData)
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -77,7 +78,7 @@ export const Benefits: React.FC<BenefitProps> = (props) => {
   return (
     <div className="benefitsContainer container">
       <div className="top">
-        <img src="./backarrow.png" height="20px" alt="" className="backArrow" onClick={() => props.setTab(Tab.Scan)}></img>
+        <img src="./backarrow.png" height="20px" alt="" className="backArrow" onClick={() => { props.setProps({ urlData: null }); props.setTab(Tab.Scan); }}></img>
         <p className="header">Choose Benefits</p>
         <p>&nbsp; &nbsp; &nbsp;</p>
       </div>

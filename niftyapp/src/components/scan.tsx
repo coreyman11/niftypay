@@ -11,13 +11,14 @@ interface ScanProps {
 
 export const Scan: React.FC<ScanProps> = (props) => {
   const onSuccess = (data) => {
-      props.setTab(Tab.Benefits); 
       props.setProps({ urlData: parseURL(data) })
+      props.setTab(Tab.Benefits); 
   }
+  
   return (
     <div className="scanContainer container">
       <div className="top">
-        <img src="./backarrow.png" onClick={() => props.setTab(Tab.Home)} height="20px" className="backArrow" alt=""></img>
+        <img src="./backarrow.png" onClick={() => {props.setProps({ urlData: null }); props.setTab(Tab.Home)}} height="20px" className="backArrow" alt=""></img>
         <p className="header">Scan QR Code</p>
         <p>&nbsp; &nbsp; &nbsp;</p>
       </div>
