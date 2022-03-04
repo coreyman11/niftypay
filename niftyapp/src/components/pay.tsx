@@ -24,6 +24,7 @@ export const Pay: React.FC<PayProps> = (props) => {
   const [finalAmount, setFinalAmount] = useState<any>(amt);
 
   useEffect(() => {
+    console.log("recipient", recipient.toBase58())
     console.log("props benefit chosen discount", props.benefitChosen)
     if (props.benefitChosen != undefined) {
       setBenefitChosen(props.benefitChosen)
@@ -33,7 +34,6 @@ export const Pay: React.FC<PayProps> = (props) => {
 
   const sendPayment = async () => {
     // verify NFT here
-    console.log("sendPayment")
     const tx = await createTransaction(provider.connection, provider.wallet.publicKey, recipient, new BigNumber(finalAmount), {
       reference,
       memo,
@@ -71,7 +71,7 @@ export const Pay: React.FC<PayProps> = (props) => {
           </div>
           <div className="payDetailGroup">
             <div className="payDetailHeader">To</div>
-            <div className="payDetailItem"> {"to fix: recipient"}</div>
+            <div className="payDetailItem"> {recipient.toBase58()}</div>
           </div>
         </div>
       </div>

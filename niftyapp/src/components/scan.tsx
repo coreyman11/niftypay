@@ -10,14 +10,14 @@ interface ScanProps {
 }
 
 //hard coding pay url for now. Remove this for Scanner
-const PAY_URL =
-    'solana:HTgS8ZvA2kFJ7iQwacKrGndeqas7LkiuviAZiysGUEVP?amount=0.01&reference=UZVpbo8tMziKMvbAC6FgTFGntqKgvQMv2GuaExEPSDf&label=Michael&message=Thanks%20for%20all%20the%20fish&memo=OrderId5678';
+// const PAY_URL =
+//     'solana:5afYu95S6zyo7CwzLhqy2TYyL83aBTK6uVVeqrutj5Dq?amount=0.01&reference=UZVpbo8tMziKMvbAC6FgTFGntqKgvQMv2GuaExEPSDf&label=Michael&message=Thanks%20for%20all%20the%20fish&memo=OrderId5678';
 export const Scan: React.FC<ScanProps> = (props) => {
   const [url, setUrl] = useState('');
   const [urlData, setUrlData] = useState({});
 
   useEffect(() => {
-    setUrl(PAY_URL);
+    // setUrl(PAY_URL);
     return () => setUrl('');
   },[]);
 
@@ -40,7 +40,7 @@ export const Scan: React.FC<ScanProps> = (props) => {
           props.setProps({ urlData })
         }}>
         {!url && <QrReader
-          delay={200}
+          // delay={200}
           onError={console.error}
           onScan={(data: any) => { console.log(data); setUrl(data?.text) }}
         />
