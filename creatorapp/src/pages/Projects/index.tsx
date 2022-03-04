@@ -31,7 +31,7 @@ export const Projects = () => {
         <div className="homeContainer container connected-container">
             <div className="topArea">
                 <div className="arrowArea"> &nbsp; </div>
-                <div className="walletArea">7aht...2bf9</div>
+                <div className="walletArea">{provider.wallet.publicKey}</div>
             </div>
             <div className="header">Your Nifty Collections</div>
             <div className="subheader">You have no collections with Nifty Pay benefits... yet.</div>
