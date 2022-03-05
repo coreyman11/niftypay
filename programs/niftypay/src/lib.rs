@@ -87,6 +87,7 @@ pub struct VerifyNFT<'info> {
     // pub nft_metadata_account: AccountInfo<'info>,
     
     pub benefit: Account<'info, Benefit>,
+    /// CHECK: Doesnt need to be checked because it's a pubkey
     pub business_owner: AccountInfo<'info>,
     pub system_program: Program<'info, System>,
 
