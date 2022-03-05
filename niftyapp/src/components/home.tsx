@@ -11,7 +11,7 @@ interface HomeProps {
   setTab: (tab: Tab) => void;
 }
 
-const opts: {preflightCommitment : Commitment } = {
+const opts: { preflightCommitment: Commitment } = {
   preflightCommitment: 'processed'
 }
 
@@ -21,7 +21,7 @@ export const Home: React.FC<HomeProps> = (props) => {
 
   const getAllNftData = async () => {
     try {
-      const connection = new Connection(clusterApiUrl('devnet'), opts.preflightCommitment); //provider.connection
+      const connection = provider.connection
       const nfts = await getParsedNftAccountsByOwner({
         publicAddress: provider.wallet.publicKey,
         connection,
@@ -37,25 +37,25 @@ export const Home: React.FC<HomeProps> = (props) => {
   useEffect(() => {
     getAllNftData();
   }, [])
-  
+
   return (
     <div className="homeContainer container">
-       <div className="top">
+      <div className="top">
         <p>&nbsp; &nbsp; &nbsp;</p>
         <p className="header">Nifty</p>
         <img src="./qricon.png" height="30px" className="backArrow" onClick={() => props.setTab(Tab.Scan)}></img>
       </div>
       <div className="content homeContent">
-        {nftData === [] ? 
+        {nftData.length ?
           (nftData.map((nft) => {
             console.log("benefits to show", nft)
             return (
-              <Nifty 
+              <Nifty
                 key={nft.mint}
                 jsonRawData={nft.data.uri}
               />
             )
-          })) : 
+          })) :
           "You have no NFTs in this wallet."
         }
       </div>
