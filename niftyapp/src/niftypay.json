@@ -6,7 +6,7 @@
       "name": "verifyNft",
       "accounts": [
         {
-          "name": "tokenMetadataProgram",
+          "name": "nftMint",
           "isMut": false,
           "isSigner": false
         },
@@ -16,17 +16,22 @@
           "isSigner": true
         },
         {
-          "name": "nftMint",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
           "name": "nftTokenAccount",
           "isMut": false,
           "isSigner": false
         },
         {
-          "name": "nftMetadataAccount",
+          "name": "benefit",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "businessOwner",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
           "isMut": false,
           "isSigner": false
         }
@@ -268,6 +273,6 @@
     }
   ],
   "metadata": {
-    "address": "8e4xkrZWctiUjc7xexkRFwxUCY5SX6P7mwcN3uHS9iHy"
+    "address": "2FHyngKYAWyoHFnC9Ryf7pM28kEXzNuNTHUAoCEMFHyg"
   }
 }

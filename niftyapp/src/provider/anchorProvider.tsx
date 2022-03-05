@@ -7,7 +7,7 @@ import { Wallet } from '../wallet';
 
 
 const programID = new PublicKey(idl.metadata.address);
-const network =  'http://127.0.0.1:8899'; //clusterApiUrl('devnet');
+const network =  clusterApiUrl('devnet');
 const opts: {preflightCommitment : web3.Commitment } = {
   preflightCommitment: 'processed'
 }

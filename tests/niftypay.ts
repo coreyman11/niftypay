@@ -2,6 +2,8 @@ import * as anchor from '@project-serum/anchor';
 import { Program } from '@project-serum/anchor';
 import { Niftypay } from '../target/types/niftypay';
 import * as assert from "assert";
+import { createMint, getOrCreateAssociatedTokenAccount, } from "@solana/spl-token"
+import { LAMPORTS_PER_SOL } from '@solana/web3.js';
 
 describe('niftypay', () => {
 
@@ -9,12 +11,58 @@ describe('niftypay', () => {
   anchor.setProvider(anchor.Provider.env());
 
   const program = anchor.workspace.Niftypay as Program<Niftypay>;
+  const connection = program.provider.connection
 
-  // it('verify_nft', async () => {
-  //   // Add your test here.
-  //   const tx = await program.rpc.verifyNft({});
-  //   console.log("confirmed", tx);
-  // });
+  it('verify_nft', async () => {
+    // Add your test here.
+    const user = program.provider.wallet.publicKey;
+    const project = anchor.web3.Keypair.generate();
+    const benefit = anchor.web3.Keypair.generate();
+    const business_owner = anchor.web3.Keypair.generate();
+
+    const payer = anchor.web3.Keypair.generate();
+    const trx = await connection.requestAirdrop(payer.publicKey, LAMPORTS_PER_SOL);
+    await connection.confirmTransaction(trx);
+    const mint = await createMint(connection, payer, user, null, 0)
+
+    const tokenAccount = await getOrCreateAssociatedTokenAccount(
+      connection,
+      payer,
+      mint,
+      user
+    );
+    
+    await program.rpc.createBenefit(
+      project.publicKey,
+      "Cozy Cafe 20%",
+      { freebie: {} },
+      { oneTime: {} },
+      2,
+      20,
+      business_owner.publicKey,
+      mint,
+      {
+        accounts: {
+          benefit: benefit.publicKey,
+          creator: program.provider.wallet.publicKey,
+          systemProgram: anchor.web3.SystemProgram.programId,
+        },
+        signers: [benefit],
+      });
+
+    const tx = await program.rpc.verifyNft({
+      accounts: {
+        user,
+        nftMint: mint,
+        nftTokenAccount: tokenAccount.address,
+        benefit: benefit.publicKey,
+        businessOwner: business_owner.publicKey,
+        systemProgram: anchor.web3.SystemProgram.programId,
+      },
+      signers: [],
+    });
+    console.log("confirmed", tx);
+  });
 
   it('can create a new project', async () => {
     const creator = program.provider.wallet.publicKey;

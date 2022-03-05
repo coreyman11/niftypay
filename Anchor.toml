@@ -1,11 +1,15 @@
+[programs.devnet]
+niftypay = "2FHyngKYAWyoHFnC9Ryf7pM28kEXzNuNTHUAoCEMFHyg"
+
+
 [programs.localnet]
-niftypay = "AWmSTgWatBqQf1Fa9MEgerZm1GmjhFF6fX8WtJGC7uTp"
+niftypay = "2FHyngKYAWyoHFnC9Ryf7pM28kEXzNuNTHUAoCEMFHyg"
 
 [registry]
 url = "https://anchor.projectserum.com"
 
 [provider]
-cluster = "localnet"
+cluster = "devnet"
 wallet = "/Users/admin/.config/solana/id.json"
 
 [scripts]
