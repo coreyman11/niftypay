@@ -21,7 +21,7 @@ const Redirect = () => {
         if (!publicKey) return;
         navigate({
             pathname: '/new',
-            search: `?recipient=${publicKey}&label=My Store`
+            search: `?recipient=${publicKey}&spl-token=EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v&label=My Store`
         })
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [publicKey]);
