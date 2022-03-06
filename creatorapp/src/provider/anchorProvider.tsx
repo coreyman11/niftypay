@@ -18,13 +18,15 @@ const AnchorProvider = ({ children }: { children: any}) => {
     const [provider, setProvider] = useState<Provider|null>(null);
     const [program, setProgram] = useState<Program|null>(null);
     useEffect(() => {
+        console.log('Runing Effect...')
         const connection = new Connection(network, opts.preflightCommitment);
         const provider = new Provider(connection, window.solana, opts);
         const program = new Program(idl as Idl, programID, provider);
         setProvider(provider);
         setProgram(program);
 
-    }, [walletAddress])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [walletAddress, window.solana])
     console.log(provider, program)
     return (
         <AnchorContext.Provider value={ { provider, program } }>

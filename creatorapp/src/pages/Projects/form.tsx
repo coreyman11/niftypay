@@ -37,7 +37,7 @@ export const ProjectForm = () => {
         }
     }
     useEffect(() => {
-        console.log("wallet", provider.wallet.publicKey)
+        // console.log("wallet", provider.wallet.publicKey)
         if(params.projectId === 'new') return;
         setUserWallet(provider.wallet.publicKey.toBase58().slice(0,4).concat('...',provider.wallet.publicKey.toBase58().slice(provider.wallet.publicKey.toBase58().length-4,provider.wallet.publicKey.toBase58().length)))
     }, [params.projectId]);
