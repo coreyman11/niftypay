@@ -36,7 +36,7 @@ export const Home: React.FC<HomeProps> = (props) => {
 
   useEffect(() => {
     getAllNftData();
-  }, [])
+  }, [getAllNftData])
 
   return (
     <div className="homeContainer container">
