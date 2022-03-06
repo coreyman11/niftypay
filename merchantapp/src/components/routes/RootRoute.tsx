@@ -56,7 +56,7 @@ export const RootRoute: FC = () => {
                                 <ConfigProvider
                                     recipient={recipient}
                                     label={label}
-                                    symbol="SOL"
+                                    symbol="USDC"
                                     icon={<SOLIcon />}
                                     decimals={9}
                                     minDecimals={1}
