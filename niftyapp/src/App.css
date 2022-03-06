@@ -16,6 +16,14 @@ body {
   min-height: 100vh;
 }
 
+.walletConnect {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 /* GENERIC FORMAT */ 
 .top {
   display: flex; 
@@ -155,6 +163,9 @@ body {
 
 .benefitDetailItem {
 
+}
+.chosenOne {
+  border: solid 2px white;
 }
 
 /* SCAN */

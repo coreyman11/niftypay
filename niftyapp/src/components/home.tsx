@@ -35,8 +35,10 @@ export const Home: React.FC<HomeProps> = (props) => {
   };
 
   useEffect(() => {
-    getAllNftData();
-  }, [])
+    if(provider && provider.connection) {
+      getAllNftData();
+    }
+  }, [provider?.connection])
 
   return (
     <div className="homeContainer container">

@@ -14,9 +14,8 @@ export const BenefitForm = () => {
     const [benefitName, setBenefitName] = useState('');
     const [benefitType, setBenefitType] = useState('');
     const [businessWallet, setBusinessWallet] = useState('');
-    const [discount, setDiscount] = useState('');
+    const [discount, setDiscount] = useState(20);
     const [frequency, setFrequency] = useState('');
-    const [businessOwner, setBusinessOwner] = useState('');
     const [userWallet, setUserWallet] = useState('');
 
     const projectPubkey = new PublicKey(params.projectId || '');
@@ -31,7 +30,7 @@ export const BenefitForm = () => {
                 { oneTime: {} }, // frequency
                 2, //allowed usage
                 discount, //discount %
-                new PublicKey(businessOwner),
+                new PublicKey(businessWallet),
                 projectAccount.contractId,
                 {
                 accounts: {
@@ -50,8 +49,9 @@ export const BenefitForm = () => {
     }
     
     useEffect(() => {
+        if(!provider?.wallet?.publicKey) return;
         setUserWallet(provider.wallet.publicKey.toBase58().slice(0,4).concat('...',provider.wallet.publicKey.toBase58().slice(provider.wallet.publicKey.toBase58().length-4,provider.wallet.publicKey.toBase58().length)));
-    }, []);
+    }, [provider?.wallet?.publicKey]);
 
     return (
         <div className="addProjectContainer container connected-container">
@@ -79,16 +79,6 @@ export const BenefitForm = () => {
                             onChange={(e) => setBenefitName(e.target.value)}
                         />
                     </div>
-                    <div className="inputGroup">
-                        <div className="inputLabel">Business wallet Address</div>
-                        <input
-                            className="inputField"
-                            type="text"
-                            placeholder="0xkaj92jspigp9jrin093rjf0935018hfqw8rjqowir"
-                            value={businessOwner}
-                            onChange={(e) => setBusinessOwner(e.target.value)}
-                        />
-                    </div>
                     <div className="inputGroupRow">
                         <div className="inputGroup smallInputGroup">
                             <div className="inputLabel">TYPE OF BENEFIT</div>
@@ -103,10 +93,10 @@ export const BenefitForm = () => {
                             <div className="inputLabel">% DISCOUNT APPLIED</div>
                             <input
                                 className="inputField smallInputField"
-                                type="text"
+                                type="number"
                                 placeholder="% Discount"
                                 value={discount}
-                                onChange={(e) => setDiscount(e.target.value)}
+                                onChange={(e) => setDiscount(Number(e.target.value))}
                             />
                         </div>
                     </div>

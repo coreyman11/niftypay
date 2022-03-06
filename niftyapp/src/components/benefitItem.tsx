@@ -7,6 +7,7 @@ interface BenefitItemsProps {
   claimable: any
   discount: number
   onClick: () => void;
+  selected: boolean
 }
 
 export const BenefitItem: React.FC<BenefitItemsProps> = (props) => {
@@ -16,7 +17,7 @@ export const BenefitItem: React.FC<BenefitItemsProps> = (props) => {
   }, [])
 
   return (
-    <div onClick={props.onClick} className="benefitItem">
+    <div onClick={props.onClick} className={`benefitItem ${props.selected && 'chosenOne'}`}>
       <img src="./logo192.png" className="benefitImg"/>
       <div className="benefitDetails">
         <div className="benefitDetailsTop">

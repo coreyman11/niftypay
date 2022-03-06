@@ -2,9 +2,6 @@
 niftypay = "2FHyngKYAWyoHFnC9Ryf7pM28kEXzNuNTHUAoCEMFHyg"
 
 
-[programs.localnet]
-niftypay = "2FHyngKYAWyoHFnC9Ryf7pM28kEXzNuNTHUAoCEMFHyg"
-
 [registry]
 url = "https://anchor.projectserum.com"
 

@@ -5,16 +5,12 @@ import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import { Home } from './pages/Home';
 import { Projects } from './pages/Projects';
 import { ProjectForm } from './pages/Projects/form';
-import { Wallet } from './wallet';
-import { WalletContext } from './provider/walletProvider';
 import { BenefitForm } from './pages/Benefits/form';
 import { Benefits } from './pages/Benefits';
 import { Congrats } from './pages/Home/congrats';
 
 
 export function Router() {
-    const { walletAddress } = React.useContext(WalletContext);
-    if (!walletAddress) return <Wallet />
     return (
         <BrowserRouter>
             <Routes>

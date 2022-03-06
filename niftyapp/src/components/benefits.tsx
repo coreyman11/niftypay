@@ -27,15 +27,24 @@ export const Benefits: React.FC<BenefitProps> = (props) => {
   const [urlData, setUrlData] = useState({});
 
   const goToPay = async () => {
-    props.setTab(Tab.Pay)
     props.setProps({ urlData, benefitChosen })
+    props.setTab(Tab.Pay)
   }
 
   const getBenefitList = async () => {
     try {
-      const benefits = await program.account.benefit.all();
+      const benefits = await program.account.benefit.all([
+        {
+            memcmp: {
+                offset: 8 + // Discriminator.
+                    32 +  // Project Id.
+                    32 ,  // Creator.
+                bytes: recipient,
+            }
+        }
+    ]);
       console.log("Got the benefits", benefits)
-      setBenefits(benefits.map(p => p.account))
+      setBenefits(benefits.map(p => ({...p.account, id: p.publicKey})))
     } catch (error) {
       console.log("error", error);
     }
@@ -65,14 +74,19 @@ export const Benefits: React.FC<BenefitProps> = (props) => {
     setUrlData(props.urlData)
     getAllNftData();
     getBenefitList();
-    setBenefitChosen(benefits[0])
-    console.log("benefit chosen", benefitChosen)
     console.log("urldata", props.urlData)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  // const benefitsToShow = benefits.filter(benefit => (nftData.findIndex(nft => (nft.mint === benefit.mint)) >= 0));
+  useEffect(() => {
+    if(!benefits.length) return;
+    setBenefitChosen(benefits[0]);
+  }, [benefits.length]);
+
+
+
+  // const benefitsToShow = benefits.filter(benefit => (nftData.findIndex(nft => (nft.mint.toBase58() === benefit.mint.toBase58())) >= 0));
   // Add when filtering is ready
 
   return (
@@ -99,6 +113,7 @@ export const Benefits: React.FC<BenefitProps> = (props) => {
                   businessOwner={benefit.businessOwner}
                   claimable={benefit.allowedUsage}
                   discount={benefit.discount}
+                  selected={benefitChosen?.id?.toBase58() === benefit?.id?.toBase58()}
                 />
               )
             })

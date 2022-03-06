@@ -4,7 +4,6 @@ import { Tab } from "../types";
 import { createTransaction } from '@solana/pay';
 import { AnchorContext } from "../provider/anchorProvider";
 import BigNumber from 'bignumber.js';
-import { WalletContext } from '../provider/walletProvider';
 import {web3} from '@project-serum/anchor';
 import { getAssociatedTokenAddress } from "@solana/spl-token"
 
@@ -21,7 +20,6 @@ export const Pay: React.FC<PayProps> = (props) => {
   const [amt, setAmt] = useState((Number(amount || 0)));
   const [benefitChosen, setBenefitChosen] = useState<any>({ discount: 0});
   const { provider, program } = useContext(AnchorContext);
-  const { walletAddress } = useContext(WalletContext);
   const [finalAmount, setFinalAmount] = useState<any>(amt);
 
   useEffect(() => {
@@ -29,7 +27,7 @@ export const Pay: React.FC<PayProps> = (props) => {
     console.log("props benefit chosen discount", props.benefitChosen)
     if (props.benefitChosen !== undefined) {
       setBenefitChosen(props.benefitChosen)
-      setFinalAmount(((1 - (props.benefitChosen.discount * 0.01)) * amt));
+      setFinalAmount(((1 - (props.benefitChosen.discount * 0.01)) * amt).toFixed(2));
     }
   }, []);
 
@@ -57,6 +55,8 @@ export const Pay: React.FC<PayProps> = (props) => {
     await provider.send(tx);
   }
 
+  const walletAddress = provider?.wallet?.publicKey;
+  console.log(props);
   return (
     <div className="payContainer container">
       <div className="top">
@@ -83,11 +83,11 @@ export const Pay: React.FC<PayProps> = (props) => {
           }
           <div className="payDetailGroup">
             <div className="payDetailHeader">From</div>
-            <div className="payDetailItem"> {walletAddress.slice(0,4).concat('...',walletAddress.slice(walletAddress.length-4,walletAddress.length))}</div>
+            <div className="payDetailItem"> {walletAddress?.slice(0,4).concat('...',walletAddress?.slice(walletAddress?.length-4,walletAddress?.length))}</div>
           </div>
           <div className="payDetailGroup">
             <div className="payDetailHeader">To</div>
-            <div className="payDetailItem"> {recipient.slice(0,4).concat('...',recipient.slice(recipient.length-4,recipient.length))}</div>
+            <div className="payDetailItem"> {recipient.toBase58().slice(0,4).concat('...',recipient?.toBase58()?.slice(recipient?.toBase58()?.length-4,recipient?.toBase58()?.length))}</div>
           </div>
         </div>
       </div>
