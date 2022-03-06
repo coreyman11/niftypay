@@ -15,7 +15,7 @@ export const AnchorContext = React.createContext({} as any);
 
 const AnchorProvider = ({ children }: { children: any}) => {
     const { walletAddress } = React.useContext(WalletContext);
-    const [provider, setProvider] = useState<Provider|null>(null);
+    const [provider, setProvider] = useState<Provider| any>(null);
     const [program, setProgram] = useState<Program|null>(null);
     useEffect(() => {
         console.log('Runing Effect...')
@@ -28,6 +28,7 @@ const AnchorProvider = ({ children }: { children: any}) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [walletAddress, window.solana])
     console.log(provider, program)
+    if(!provider || !provider.wallet)  return null;
     return (
         <AnchorContext.Provider value={ { provider, program } }>
             {children}
