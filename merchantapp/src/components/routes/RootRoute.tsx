@@ -9,7 +9,7 @@ import { PaymentProvider } from '../contexts/PaymentProvider';
 import { ThemeProvider } from '../contexts/ThemeProvider';
 import { TransactionsProvider } from '../contexts/TransactionsProvider';
 import { SolanaPayLogo } from '../images/SolanaPayLogo';
-import { SOLIcon } from '../images/SOLIcon';
+import { USDCIcon } from '../images/USDCIcon';
 import { DEVNET_ENDPOINT } from '../../utils/constants';
 import * as css from './RootRoute.module.pcss';
 
@@ -21,30 +21,32 @@ const Redirect = () => {
         if (!publicKey) return;
         navigate({
             pathname: '/new',
-            search: `?recipient=${publicKey}&spl-token=EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v&label=My Store`
+            search: `?recipient=${publicKey}&splToken=EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v&label=My Store`
         })
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [publicKey]);
+    }, [publicKey?.toBase58()]);
     return <></>
 }
 export const RootRoute: FC = () => {
     const wallets = useMemo(() => [new PhantomWalletAdapter()], []);
     const [params] = useSearchParams();
-    const { recipient, label } = useMemo(() => {
+    const { recipient, label, splToken } = useMemo(() => {
         let recipient: PublicKey | undefined, label: string | undefined;
-
+        let splToken: string  | undefined;
         const recipientParam = params.get('recipient');
         const labelParam = params.get('label');
-        if (recipientParam && labelParam) {
+        const splTokenParam = params.get('splToken');
+        if (recipientParam && labelParam && splTokenParam) {
             try {
                 recipient = new PublicKey(recipientParam);
                 label = labelParam;
+                splToken = splTokenParam as string;
             } catch (error) {
                 console.error(error);
             }
         }
 
-        return { recipient, label };
+        return { recipient, label, splToken };
     }, [params]);
 
     return (
@@ -52,12 +54,13 @@ export const RootRoute: FC = () => {
             <ConnectionProvider endpoint={DEVNET_ENDPOINT}>
                 <WalletProvider wallets={wallets} autoConnect >
                     <WalletModalProvider>
-                        {recipient && label ? 
+                        {recipient && label && splToken ? 
                                 <ConfigProvider
                                     recipient={recipient}
                                     label={label}
                                     symbol="USDC"
-                                    icon={<SOLIcon />}
+                                    icon={<USDCIcon />}
+                                    splToken={new PublicKey(splToken as string)}
                                     decimals={9}
                                     minDecimals={1}
                                     requiredConfirmations={9}
