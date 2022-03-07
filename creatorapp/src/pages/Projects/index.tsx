@@ -45,7 +45,7 @@ export const Projects = () => {
                 <div className="arrowArea"> &nbsp; </div>
                 <div className="walletArea">{userWallet}</div>
             </div>
-            <div className="header">Your Nifty Collections</div>
+            <div className="header">Your <span className="highlight">&nbsp;Nifty&nbsp;</span> Collections</div>
             {!projects.length && <div className="subheader">You have no collections with Nifty Pay benefits... yet.</div>}
             <div className="boxGrid">
                 {projects.map(({ name, id }) => (

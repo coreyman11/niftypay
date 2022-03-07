@@ -41,6 +41,8 @@ function App() {
   }
   const renderNotConnectedContainer = () => (
     <div className="walletConnect">
+      <div className="header">⏰</div>
+      <div className="header">It's time to <div className="highlight">LEVEL UP</div>your NFTs...</div>
       <button
         className="button"
         onClick={connectWallet}

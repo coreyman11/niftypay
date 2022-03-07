@@ -20,11 +20,11 @@ html {
 
     & body {
         text-align: center;
-        background: hsla(165, 77%, 19%, 1);
-        background: linear-gradient(180deg, hsla(165, 77%, 19%, 1) 0%, hsla(257, 31%, 25%, 1) 100%);
-        background: -moz-linear-gradient(180deg, hsla(165, 77%, 19%, 1) 0%, hsla(257, 31%, 25%, 1) 100%);
-        background: -webkit-linear-gradient(180deg, hsla(165, 77%, 19%, 1) 0%, hsla(257, 31%, 25%, 1) 100%);
-        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#0B5442", endColorstr="#372C53", GradientType=1 );
+        background: hsla(0, 0%, 13%, 1);
+        background: linear-gradient(315deg, hsla(0, 0%, 13%, 1) 15%, hsla(332, 54%, 27%, 1) 44%, hsla(230, 64%, 57%, 1) 78%);
+        background: -moz-linear-gradient(315deg, hsla(0, 0%, 13%, 1) 15%, hsla(332, 54%, 27%, 1) 44%, hsla(230, 64%, 57%, 1) 78%);
+        background: -webkit-linear-gradient(315deg, hsla(0, 0%, 13%, 1) 15%, hsla(332, 54%, 27%, 1) 44%, hsla(230, 64%, 57%, 1) 78%);
+        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#222222", endColorstr="#691F41", GradientType=1 );
         min-height: 100vh;
         & .wallet-adapter-modal {
             overflow-y: initial;
@@ -45,11 +45,20 @@ body {
 }
 
 button {
-    background: none;
+    background-color: hsla(230, 64%, 57%, 1);
+    font-family: Inter;
     border: none;
-    color: inherit;
+    border-radius: 10px;
+    color: white;
+    box-shadow: 3px 3px 10px hsla(0, 0%, 13%, 1);
 }
 
 #app {
     min-height: 100vh;
+}
+
+.highlight {
+  background: white; 
+  color: hsla(332, 54%, 27%, 1);
+  border-radius: 10px;
 }

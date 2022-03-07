@@ -47,8 +47,8 @@ export const ProjectForm = () => {
                 <div className="arrowArea"><Link className="arrowLink" to="/">{"<-"}</Link> </div>
                 <div className="walletArea">{userWallet}</div>
             </div>
-            <div className="header">Add a Collection</div>
-            <div className="subheader">Choose a collection you’re the owner of or add your collection manually.</div>
+            <div className="header">Add a <span className="highlight">&nbsp;Collection&nbsp;</span></div>
+            <div className="subheader">Tell us what NFT collection to add benefits to and which wallets get admin access.</div>
             <div className="formContainer">
                 <form
                     className="formContainer"
