@@ -12,6 +12,8 @@ import { SolanaPayLogo } from '../images/SolanaPayLogo';
 import { SOLIcon } from '../images/SOLIcon';
 import { DEVNET_ENDPOINT } from '../../utils/constants';
 import * as css from './RootRoute.module.pcss';
+import { DEVNET_ENDPOINT, DEVNET_USDC_MINT } from '../../utils/constants';
+import { USDCIcon } from '../images/USDCIcon';
 
 const Redirect = () => {
     const { publicKey } = useWallet();
