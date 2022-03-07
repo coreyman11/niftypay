@@ -54,6 +54,7 @@ export const RootRoute: FC = () => {
                     <WalletModalProvider>
                         {recipient && label ? 
                                 <ConfigProvider
+                                    splToken={DEVNET_USDC_MINT}
                                     recipient={recipient}
                                     label={label}
                                     symbol="USDC"
