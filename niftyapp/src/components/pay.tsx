@@ -7,7 +7,6 @@ import BigNumber from 'bignumber.js';
 import {web3} from '@project-serum/anchor';
 import { getAssociatedTokenAddress } from "@solana/spl-token"
 
-
 interface PayProps {
   setTab: (tab: Tab) => void;
   setProps: (props: any) => void;
@@ -23,7 +22,8 @@ export const Pay: React.FC<PayProps> = (props) => {
   const [finalAmount, setFinalAmount] = useState<any>(amt);
 
   useEffect(() => {
-    console.log("recipient", recipient.toBase58())
+    // console.log("recipient", recipient.toBase58())
+    console.log("recipient", recipient);
     console.log("props benefit chosen discount", props.benefitChosen)
     if (props.benefitChosen !== undefined) {
       setBenefitChosen(props.benefitChosen)
@@ -61,13 +61,13 @@ export const Pay: React.FC<PayProps> = (props) => {
     <div className="payContainer container">
       <div className="top">
         <img src="./backarrow.png" height="20px" className="backArrow" onClick={() => props.setTab(Tab.Benefits)} ></img>
-        <p className="header">Pay</p>
+        <p className="header"><span className="highlight">&nbsp;Pay&nbsp;</span> 💸</p>
         <p>&nbsp; &nbsp; &nbsp;</p>
       </div>
       <div className="content">
         <div className="amounts">
-          <div className="bigAmount">{finalAmount} USDC</div>
-          <div className="subAmount">${finalAmount}</div>
+          <div className="bigAmount">{finalAmount}</div>
+          <div className="subAmount">USDC</div>
         </div>
         <div className="middle">
           <div className="payDetailGroup">

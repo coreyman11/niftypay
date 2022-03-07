@@ -8,16 +8,17 @@ body {
 
 .App {
   text-align: center;
-  background: hsla(165, 77%, 19%, 1);
-  background: linear-gradient(180deg, hsla(165, 77%, 19%, 1) 0%, hsla(257, 31%, 25%, 1) 100%);
-  background: -moz-linear-gradient(180deg, hsla(165, 77%, 19%, 1) 0%, hsla(257, 31%, 25%, 1) 100%);
-  background: -webkit-linear-gradient(180deg, hsla(165, 77%, 19%, 1) 0%, hsla(257, 31%, 25%, 1) 100%);
-  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#0B5442", endColorstr="#372C53", GradientType=1 );
+  background: hsla(0, 0%, 13%, 1);
+  background: linear-gradient(315deg, hsla(0, 0%, 13%, 1) 15%, hsla(332, 54%, 27%, 1) 44%, hsla(230, 64%, 57%, 1) 78%);
+  background: -moz-linear-gradient(315deg, hsla(0, 0%, 13%, 1) 15%, hsla(332, 54%, 27%, 1) 44%, hsla(230, 64%, 57%, 1) 78%);
+  background: -webkit-linear-gradient(315deg, hsla(0, 0%, 13%, 1) 15%, hsla(332, 54%, 27%, 1) 44%, hsla(230, 64%, 57%, 1) 78%);
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#222222", endColorstr="#691F41", GradientType=1 );
   min-height: 100vh;
 }
 
 .walletConnect {
   display: flex;
+  flex-direction: column;
   flex-grow: 1;
   justify-content: center;
   align-items: center;
@@ -25,6 +26,17 @@ body {
 }
 
 /* GENERIC FORMAT */ 
+.highlight {
+  background: white; 
+  color: hsla(332, 54%, 27%, 1);
+  border-radius: 10px;
+  /* -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent; */
+}
+
+
 .top {
   display: flex; 
   flex-direction: row;
@@ -41,7 +53,13 @@ body {
 }
 
 .header {
-  font-weight: bold;
+  font-size: 30px;
+  font-weight: bolder;
+}
+
+.title {
+  font-size: 50px;
+  font-weight: bolder;
 }
 
 .content {
@@ -75,11 +93,18 @@ body {
 }
 
 .button {
-  background-color: hsla(144, 59%, 39%, 1);
-  border-radius: 30px;
-  margin: 30px 20px;
-  padding: 20px;
+  box-shadow: 3px 3px 10px hsla(0, 0%, 13%, 1);
+  background-color: hsla(230, 64%, 57%, 1);
+  width: 250px;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 20px auto;
+  cursor: pointer;
+  border: none;
+  color: white;
+  font-size: 20px;
   font-weight: bold;
+  text-decoration: none;
 }
 
 /* HOME */
@@ -199,25 +224,39 @@ body {
 }
 
 #html5qr-code-full-region__camera_selection {
-  font-size: 16px;
-  border-radius: 20px;
+  font-size: 20px;
+  border-radius: 10px;
   padding: 10px;
   width: 90%;
 }
 
 #html5qr-code-full-region__dashboard_section_csr button {
-  background-color: hsla(144, 59%, 39%, 1);
-  border-radius: 30px;
-  margin: 30px 20px;
-  padding: 20px;
-  font-weight: bold;
-  border: 0;
-  width: auto;
-  color: white;
+  box-shadow: 3px 3px 10px hsla(0, 0%, 13%, 1);
+  background-color: hsla(230, 64%, 57%, 1);
+  width: 250px;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 20px auto;
   cursor: pointer;
-  font-size: 16px;
+  border: none;
+  color: white;
+  font-size: 20px;
   font-weight: bold;
-  font-family: Inter;
+  text-decoration: none;
+}
+
+#html5qr-code-full-region__filescan_input {
+  font-size:16px;
+}
+
+#html5qr-code-full-region__scan_region img {
+  display: none;
+  visibility: hidden;
+}
+
+#html5qr-code-full-region__header_message {
+  font-size: 15px;
+  color: white;
 }
 
 /* PAY */
@@ -241,24 +280,3 @@ body {
   font-weight: bold;
 }
 
-
-.cta-button {
-  height: 45px;
-  border: 0;
-  width: auto;
-  padding-left: 40px;
-  padding-right: 40px;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.connect-wallet-button {
-  color: white;
-  background: -webkit-linear-gradient(left, #67a9ff, #9452ff);
-  background-size: 200% 200%;
-  animation: gradient-animation 4s ease infinite;
-  max-width: 240px;
-  margin: auto;
-}

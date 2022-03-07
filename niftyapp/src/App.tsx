@@ -62,8 +62,14 @@ function App() {
   }
   const renderNotConnectedContainer = () => (
     <div className="walletConnect">
+      <div className="title">
+        🦸‍♀️<br/>
+        Unleash <br/>
+        your NFT's <br/>
+        <div className="highlight">&nbsp;superpowers&nbsp;</div>
+      </div>
       <button
-        className="cta-button connect-wallet-button"
+        className="button"
         onClick={connectWallet}
       >
         Connect to Wallet

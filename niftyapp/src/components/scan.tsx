@@ -19,7 +19,7 @@ export const Scan: React.FC<ScanProps> = (props) => {
     <div className="scanContainer container">
       <div className="top">
         <img src="./backarrow.png" onClick={() => {props.setProps({ urlData: null }); props.setTab(Tab.Home)}} height="20px" className="backArrow" alt=""></img>
-        <p className="header">Scan QR Code</p>
+        <p className="header">Scan <span className="highlight">&nbsp;QR Code&nbsp;</span></p>
         <p>&nbsp; &nbsp; &nbsp;</p>
       </div>
       <div className="content qrContainer">

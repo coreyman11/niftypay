@@ -93,13 +93,13 @@ export const Benefits: React.FC<BenefitProps> = (props) => {
     <div className="benefitsContainer container">
       <div className="top">
         <img src="./backarrow.png" height="20px" alt="" className="backArrow" onClick={() => { props.setProps({ urlData: null }); props.setTab(Tab.Scan); }}></img>
-        <p className="header">Choose Benefits</p>
+        <p className="header">Choose <span className="highlight">&nbsp;Benefits&nbsp;</span></p>
         <p>&nbsp; &nbsp; &nbsp;</p>
       </div>
       <div className="content">
         <div className="amounts">
-          <div className="bigAmount">{amt} USDC</div>
-          <div className="subAmount">${amt}</div>
+          <div className="bigAmount">{amt}</div>
+          <div className="subAmount">USDC</div>
         </div>
         <div className="middle">
           {
