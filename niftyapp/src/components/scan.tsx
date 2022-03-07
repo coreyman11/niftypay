@@ -14,6 +14,9 @@ export const Scan: React.FC<ScanProps> = (props) => {
       props.setProps({ urlData: parseURL(data) })
       props.setTab(Tab.Benefits); 
   }
+  // useEffect(() => {
+  //   onSuccess('solana:3KKK5vSFxHVZU6fgLrFnBLLB7raE8ZqVQqbyseuJJved?amount=2&spl-token=EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v&reference=H9DmwEen2kqv668dPZ7wyhqodGTCToVFGRs5nsY4RDSE&label=My%20Store');
+  // }, [])
   
   return (
     <div className="scanContainer container">

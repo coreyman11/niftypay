@@ -17,7 +17,6 @@ interface PayProps {
 export const Pay: React.FC<PayProps> = (props) => {
   const { recipient, memo, amount, reference } = props.urlData || {};
   const [amt, setAmt] = useState((Number(amount || 0)));
-  const [benefitChosen, setBenefitChosen] = useState<any>({ discount: 0});
   const { provider, program } = useContext(AnchorContext);
   const [finalAmount, setFinalAmount] = useState<any>(amt);
 
@@ -26,36 +25,41 @@ export const Pay: React.FC<PayProps> = (props) => {
     console.log("recipient", recipient);
     console.log("props benefit chosen discount", props.benefitChosen)
     if (props.benefitChosen !== undefined) {
-      setBenefitChosen(props.benefitChosen)
-      setFinalAmount(((1 - (props.benefitChosen.discount * 0.01)) * amt).toFixed(2));
+      setFinalAmount(((1 - ((props.benefitChosen.discount || 0) * 0.01)) * amt).toFixed(2));
     }
   }, []);
 
   const sendPayment = async () => {
     // verify NFT here
-    const tokenAccount = await getAssociatedTokenAddress(
-      props.benefitChosen.mint,
-      provider.wallet.publicKey
-    );
-    await program.rpc.verifyNft({
-      accounts: {
-        user: provider.wallet.publicKey,
-        nftMint: props.benefitChosen.mint,
-        nftTokenAccount: tokenAccount,
-        benefit: benefitChosen.publicKey,
-        businessOwner: recipient.publicKey,
-        systemProgram: web3.SystemProgram.programId,
-      },
-      signers: [],
-    });
-    const tx = await createTransaction(provider.connection, provider.wallet.publicKey, recipient, new BigNumber(finalAmount), {
-      reference,
-      memo,
-    });
-    await provider.send(tx);
+    try {
+      if (props.benefitChosen) {
+        const tokenAccount = await getAssociatedTokenAddress(
+          props.benefitChosen.mint,
+          provider.wallet.publicKey
+        );
+        await program.rpc.verifyNft({
+          accounts: {
+            user: provider.wallet.publicKey,
+            nftMint: props.benefitChosen.mint,
+            nftTokenAccount: tokenAccount,
+            benefit: props.benefitChosen.id,
+            businessOwner: recipient,
+            systemProgram: web3.SystemProgram.programId,
+          },
+          signers: [],
+        });
+      }
+      const tx = await createTransaction(provider.connection, provider.wallet.publicKey, recipient, new BigNumber(finalAmount), {
+        reference,
+        memo,
+      });
+      await provider.send(tx);
+    } catch (err) {
+        alert(err);
+    }
   }
 
-  const walletAddress = provider?.wallet?.publicKey;
+  const walletAddress = provider?.wallet?.publicKey?.toBase58();
   console.log(props);
   return (
     <div className="payContainer container">
@@ -74,10 +78,10 @@ export const Pay: React.FC<PayProps> = (props) => {
             <div className="payDetailHeader">Original Amount</div>
             <div className="payDetailItem"> ${amt}</div>
           </div>
-          {benefitChosen.discount !== 0 ? 
+          {props.benefitChosen.discount !== 0 ? 
           <div className="payDetailGroup">
             <div className="payDetailHeader">NFT Benefit</div>
-            <div className="payDetailItem"> {benefitChosen.discount}% Discount</div>
+            <div className="payDetailItem"> {props.benefitChosen.discount}% Discount</div>
           </div> :
           ""
           }

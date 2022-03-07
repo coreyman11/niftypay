@@ -21,7 +21,7 @@ export const Benefits: React.FC<BenefitProps> = (props) => {
   const { recipient, memo, amount, reference } = props.urlData || {};
   const [nftData, setNftData] = useState<any[]>([]);
   const [benefits, setBenefits] = useState<any>([]);
-  const [benefitChosen, setBenefitChosen] = useState<any>([]);
+  const [benefitChosen, setBenefitChosen] = useState<any>(null);
   const [amt, setAmt] = useState((Number(amount || 0)));
   const { provider, program } = useContext(AnchorContext);
   const [urlData, setUrlData] = useState({});
@@ -81,12 +81,14 @@ export const Benefits: React.FC<BenefitProps> = (props) => {
 
   useEffect(() => {
     if(!benefits.length) return;
-    setBenefitChosen(benefits[0]);
-  }, [benefits.length]);
+    const benefitsToShow = benefits.filter(benefit => (nftData.findIndex(nft => (nft.mint === benefit.mint.toBase58())) >= 0));
+    if(!benefitsToShow.length) return;
+    setBenefitChosen(benefitsToShow[0]);
+  }, [benefits.length, nftData.length]);
 
 
 
-  // const benefitsToShow = benefits.filter(benefit => (nftData.findIndex(nft => (nft.mint.toBase58() === benefit.mint.toBase58())) >= 0));
+  const benefitsToShow = benefits.filter(benefit => (nftData.findIndex(nft => (nft.mint === benefit.mint.toBase58())) >= 0));
   // Add when filtering is ready
 
   return (
@@ -103,7 +105,7 @@ export const Benefits: React.FC<BenefitProps> = (props) => {
         </div>
         <div className="middle">
           {
-            benefits.map((benefit) => {
+            benefitsToShow.map((benefit) => {
               console.log("benefits to show", benefit)
               return (
                 <BenefitItem {...props}
