@@ -2,7 +2,7 @@ import {
     encodeURL,
     findTransactionSignature,
     FindTransactionSignatureError,
-    validateTransactionSignature,
+    // validateTransactionSignature,
 } from '@solana/pay';
 import { useConnection } from '@solana/wallet-adapter-react';
 import { ConfirmedSignatureInfo, Keypair, PublicKey, TransactionSignature } from '@solana/web3.js';
@@ -12,6 +12,7 @@ import { useConfig } from '../../hooks/useConfig';
 import { useNavigateWithQuery } from '../../hooks/useNavigateWithQuery';
 import { PaymentContext, PaymentStatus } from '../../hooks/usePayment';
 import { Confirmations } from '../../types';
+import { validateTransactionSignature } from '../../utils/validateTxnSig';
 
 export interface PaymentProviderProps {
     children: ReactNode;
