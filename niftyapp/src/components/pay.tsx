@@ -16,16 +16,15 @@ interface PayProps {
 
 export const Pay: React.FC<PayProps> = (props) => {
   const { recipient, memo, amount, reference } = props.urlData || {};
-  const [amt, setAmt] = useState((Number(amount || 0)));
   const { provider, program } = useContext(AnchorContext);
-  const [finalAmount, setFinalAmount] = useState<any>(amt);
+  const [finalAmount, setFinalAmount] = useState<any>(Number(amount.toFixed(9)));
 
   useEffect(() => {
     // console.log("recipient", recipient.toBase58())
     console.log("recipient", recipient);
     console.log("props benefit chosen discount", props.benefitChosen)
-    if (props.benefitChosen !== undefined) {
-      setFinalAmount(((1 - ((props.benefitChosen.discount || 0) * 0.01)) * amt).toFixed(2));
+    if (props?.benefitChosen) {
+      setFinalAmount(((1 - ((props?.benefitChosen?.discount || 0) * 0.01)) * (Number(amount.toFixed(9)))));
     }
   }, []);
 
@@ -60,7 +59,7 @@ export const Pay: React.FC<PayProps> = (props) => {
   }
 
   const walletAddress = provider?.wallet?.publicKey?.toBase58();
-  console.log(props);
+  console.log(props, finalAmount, walletAddress);
   return (
     <div className="payContainer container">
       <div className="top">
@@ -70,20 +69,19 @@ export const Pay: React.FC<PayProps> = (props) => {
       </div>
       <div className="content">
         <div className="amounts">
-          <div className="bigAmount">{finalAmount}</div>
-          <div className="subAmount">USDC</div>
+          <div className="bigAmount">{finalAmount.toFixed(9)}</div>
+          <div className="subAmount">SOL</div>
         </div>
         <div className="middle">
           <div className="payDetailGroup">
             <div className="payDetailHeader">Original Amount</div>
-            <div className="payDetailItem"> ${amt}</div>
+            <div className="payDetailItem"> {amount.toFixed(9)} SOL</div>
           </div>
-          {props.benefitChosen.discount !== 0 ? 
+          {props?.benefitChosen?.discount &&
           <div className="payDetailGroup">
             <div className="payDetailHeader">NFT Benefit</div>
-            <div className="payDetailItem"> {props.benefitChosen.discount}% Discount</div>
-          </div> :
-          ""
+            <div className="payDetailItem"> {props?.benefitChosen?.discount}% Discount</div>
+          </div>
           }
           <div className="payDetailGroup">
             <div className="payDetailHeader">From</div>

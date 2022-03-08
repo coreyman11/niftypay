@@ -100,8 +100,8 @@ export const Benefits: React.FC<BenefitProps> = (props) => {
       </div>
       <div className="content">
         <div className="amounts">
-          <div className="bigAmount">{amt}</div>
-          <div className="subAmount">USDC</div>
+          <div className="bigAmount">{amt.toFixed(9)}</div>
+          <div className="subAmount">SOL</div>
         </div>
         <div className="middle">
           {
