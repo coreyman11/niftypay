@@ -47,16 +47,7 @@ export const Projects = () => {
 
     const getBenefitList = async () => {
         try {
-          const benefits = await program.account.benefit.all([
-            {
-                memcmp: {
-                    offset: 8 + // Discriminator.
-                        32 +  // Project Id.
-                        32 ,  // Creator.
-                    bytes: "5afYu95S6zyo7CwzLhqy2TYyL83aBTK6uVVeqrutj5Dq"
-                }
-            }
-        ]);
+          const benefits = await program.account.benefit.all();
           console.log("Got the benefits", benefits)
           setBenefits(benefits.map((p:any) => ({...p.account, id: p.publicKey})))
         } catch (error) {
@@ -67,7 +58,6 @@ export const Projects = () => {
     const abbreviate = async (item: string) => {
         return item.slice(0,4).concat('...',item.slice(item.length-4,item.length))
     }
-
 
     useEffect(() => {
         if(!provider?.wallet?.publicKey) return;
