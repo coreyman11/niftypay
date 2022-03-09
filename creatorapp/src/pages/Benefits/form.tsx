@@ -59,7 +59,7 @@ export const BenefitForm = () => {
                 <div className="arrowArea"><Link className="arrowLink" to="/">{"<-"}</Link> </div>
                 <div className="walletArea">{userWallet}</div>
             </div>
-            <div className="header">Add Benefits to this Collection</div>
+            <div className="header">Add Benefits to Collection</div>
             <div className="subheader">What benefits do you want this NFT collection to give to holders?</div>
                 <form
                     className="formContainer"
@@ -73,7 +73,7 @@ export const BenefitForm = () => {
                         <input
                             className="inputField"
                             type="text"
-                            placeholder="Starbucks and Mycoverse NFT 20% Discount"
+                            placeholder="Starbucks: 20% Discount"
                             value={benefitName}
                             onChange={(e) => setBenefitName(e.target.value)}
                         />
