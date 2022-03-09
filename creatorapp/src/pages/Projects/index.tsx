@@ -111,7 +111,7 @@ export const Projects = () => {
                                 {benefits.filter((benefit:any) => (id === benefit.projectId.toBase58()))
                                 .map((benefit:any) => (
                                     <div className="projectDetailText" key={benefit.id}>
-                                        {benefit.name}
+                                       ☑️ {benefit.name}
                                     </div>
                                 ))}
                             </div>
