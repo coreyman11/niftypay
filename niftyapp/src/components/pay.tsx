@@ -53,9 +53,11 @@ export const Pay: React.FC<PayProps> = (props) => {
         memo,
       });
       await provider.send(tx);
-      // props.setTab(Tab.Congrats);
+      props.setTab(Tab.Congrats);
     } catch (err) {
-        alert(err);
+        let error: any = err;
+        if(error.message) alert(error.message);
+        else alert(error);
     }
   }
 
