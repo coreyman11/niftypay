@@ -55,7 +55,6 @@ body {
 .arrowLink {
   color: white;
   text-decoration: none;
-
 }
 
 .walletArea {
@@ -136,9 +135,11 @@ body {
 
 .boxGrid {
   display: flex;
-  flex-direction: column; 
+  flex-direction: row; 
   flex-wrap: wrap;
   justify-content: space-around;
+  width: 900px;
+  margin: auto;
 }
 
 .box {
@@ -159,16 +160,77 @@ body {
 }
 
 .secondaryButton {
+  box-shadow: 3px 3px 10px hsla(0, 0%, 13%, 1);
   background-color: white;
   opacity: 0.8;
   color: black;
   width: 150px;
-  border-radius: 50px;
-  padding: 10px;
+  border-radius: 10px;
+  padding: 10px 20px;
   margin: 20px auto;
   cursor: pointer;
   border: none;
+  font-size: 20px;;
+  text-decoration: none;
+}
+
+.projectBox {
+  background-color: hsl(0, 6%, 11%, .4);
+  margin: 10px auto;
+  border-radius: 10px;
+  padding: 30px;
+  width: 380px;
+}
+
+.projectBoxColumns {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.projectDetailName {
   font-size: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.projectDetailGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 4px;
+  text-align: left;
+}
+
+.projectDetailHeader {
+  color: darkgrey;
+  font-size: 12px;
+}
+
+.projectDetailText {
+  font-size: 18px;
+  margin: 3px 0px;
+  cursor: pointer; 
+}
+
+.projectDetailText:hover {
+  text-decoration: underline;
+}
+
+.projectDetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: left;
+  text-align: left;
+  margin: 10px;
+}
+
+.projectBenefitsList {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: left;
+  margin: 10px;
 }
 
 /* ADD BENEFITS */
