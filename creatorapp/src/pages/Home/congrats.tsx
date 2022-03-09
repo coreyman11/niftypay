@@ -12,10 +12,8 @@ export const Congrats = () => {
             </div>
             <div className="header">Congrats! 🎉</div>
             <div className="subheader">Your Nifty benefits are now added to your collection.</div>
-            <div className="subheader">Your merchants can now create QR codes for holders to access benefits.</div>
-            <button className="button">
-                <Link to="/" className="button">Go Back to Projects</Link>
-            </button>
+            <div className="subheader">Your can now create QR codes for holders to access benefits.</div>
+            <Link to="/" className="button">Go Back to Projects</Link>
         </div>
     );
 };

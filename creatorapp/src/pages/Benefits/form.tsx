@@ -61,7 +61,6 @@ export const BenefitForm = () => {
             </div>
             <div className="header">Add Benefits to this Collection</div>
             <div className="subheader">What benefits do you want this NFT collection to give to holders?</div>
-            <div className="formContainer">
                 <form
                     className="formContainer"
                     onSubmit={(event) => {
@@ -110,7 +109,7 @@ export const BenefitForm = () => {
                             onChange={(e) => setBusinessWallet(e.target.value)}
                         />
                     </div>
-                    <div className="inputGroup">
+                    {/* <div className="inputGroup">
                         <div className="inputLabel">RENEWAL FREQUENCY</div>
                         <input
                             className="inputField"
@@ -119,12 +118,11 @@ export const BenefitForm = () => {
                             value={frequency}
                             onChange={(e) => setFrequency(e.target.value)}
                         />
-                    </div>
+                    </div> */}
                     <button type="submit" className="button">
                         Create Benefit
                     </button>
                 </form>
-            </div>
         </div>
     );
 };
