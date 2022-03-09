@@ -17,14 +17,14 @@ interface PayProps {
 export const Pay: React.FC<PayProps> = (props) => {
   const { recipient, memo, amount, reference } = props.urlData || {};
   const { provider, program } = useContext(AnchorContext);
-  const [finalAmount, setFinalAmount] = useState<any>(Number(amount.toFixed(9)));
+  const [finalAmount, setFinalAmount] = useState<any>(Number(amount.toFixed(3)));
 
   useEffect(() => {
     // console.log("recipient", recipient.toBase58())
     console.log("recipient", recipient);
     console.log("props benefit chosen discount", props.benefitChosen)
     if (props?.benefitChosen) {
-      setFinalAmount(((1 - ((props?.benefitChosen?.discount || 0) * 0.01)) * (Number(amount.toFixed(9)))));
+      setFinalAmount(((1 - ((props?.benefitChosen?.discount || 0) * 0.01)) * (Number(amount.toFixed(3)))));
     }
   }, []);
 
@@ -69,13 +69,13 @@ export const Pay: React.FC<PayProps> = (props) => {
       </div>
       <div className="content">
         <div className="amounts">
-          <div className="bigAmount">{finalAmount.toFixed(9)}</div>
+          <div className="bigAmount">{finalAmount.toFixed(3)}</div>
           <div className="subAmount">SOL</div>
         </div>
         <div className="middle">
           <div className="payDetailGroup">
             <div className="payDetailHeader">Original Amount</div>
-            <div className="payDetailItem"> {amount.toFixed(9)} SOL</div>
+            <div className="payDetailItem"> {amount.toFixed(3)} SOL</div>
           </div>
           {props?.benefitChosen?.discount &&
           <div className="payDetailGroup">
