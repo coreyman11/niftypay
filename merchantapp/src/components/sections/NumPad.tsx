@@ -44,7 +44,7 @@ export const NumPad: FC = () => {
 
     return (
         <div className={css.root}>
-            <div className={css.text}>Enter amount in <span className={css.highlight}>{symbol}</span></div>
+            <div className={css.text}>Enter amount in {symbol}</div>
             <div className={css.value}>{value}</div>
             <div className={css.buttons}>
                 <div className={css.row}>

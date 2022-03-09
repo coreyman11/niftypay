@@ -16,13 +16,8 @@ export const Congrats: React.FC<CongratsProps> = (props) => {
 
   return (
     <div className="homeContainer container">
-            <div className="topArea">
-                <div className="arrowArea"> &nbsp; </div>
-                <div className="walletArea">7aht...2bf9</div>
-            </div>
             <div className="header">Congrats! 🎉</div>
-            <div className="subheader">Your Nifty benefits are now added to your collection.</div>
-            <div className="subheader">Your can now create QR codes for holders to access benefits.</div>
+            <div className="subheader">You've sent your payment. Enjoy!</div>
             <Link to="/" className="button">Go Back to Projects</Link>
         </div>
   );
