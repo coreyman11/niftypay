@@ -17,14 +17,14 @@ interface PayProps {
 export const Pay: React.FC<PayProps> = (props) => {
   const { recipient, memo, amount, reference } = props.urlData || {};
   const { provider, program } = useContext(AnchorContext);
-  const [finalAmount, setFinalAmount] = useState<any>(Number(amount.toFixed(3)));
+  const [finalAmount, setFinalAmount] = useState<any>(Number(amount.toFixed()));
 
   useEffect(() => {
     // console.log("recipient", recipient.toBase58())
     console.log("recipient", recipient);
     console.log("props benefit chosen discount", props.benefitChosen)
     if (props?.benefitChosen) {
-      setFinalAmount(((1 - ((props?.benefitChosen?.discount || 0) * 0.01)) * (Number(amount.toFixed(3)))));
+      setFinalAmount(((1 - ((props?.benefitChosen?.discount || 0) * 0.01)) * (Number(amount.toFixed()))));
     }
   }, []);
 
