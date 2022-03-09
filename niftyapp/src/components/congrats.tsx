@@ -1,11 +1,10 @@
 import '../App.css';
 import { useState, useContext, useEffect } from "react";
-import {
-  Link,
-} from "react-router-dom";
+import { Tab } from "../types";
 
 interface CongratsProps {
- 
+  setTab: (tab: Tab) => void;
+  setProps: (props: any) => void;
 }
 
 export const Congrats: React.FC<CongratsProps> = (props) => {
@@ -14,11 +13,21 @@ export const Congrats: React.FC<CongratsProps> = (props) => {
     console.log("Congrats!");
   }, [])
 
+  const goHome = async () => {
+    props.setTab(Tab.Home)
+  }
+
   return (
-    <div className="homeContainer container">
-            <div className="header">Congrats! 🎉</div>
-            <div className="subheader">You've sent your payment. Enjoy!</div>
-            <Link to="/" className="button">Go Back to Projects</Link>
+    <div className="congratsContainer container">
+        <div className="top">
+          <p>&nbsp; &nbsp; &nbsp;</p>
+          <p className="header">Congrats! 🎉</p>
+          <p>&nbsp; &nbsp; &nbsp;</p>
         </div>
+        <div className="content">
+          <div className="subheader">You've sent your payment. Enjoy!</div>
+          <div className="button" onClick={() => goHome()}>Go Home</div>
+        </div>
+    </div>
   );
 };
