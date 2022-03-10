@@ -48,7 +48,7 @@ export const Pay: React.FC<PayProps> = (props) => {
           signers: [],
         });
       }
-      const tx = await createTransaction(provider.connection, provider.wallet.publicKey, recipient, new BigNumber(finalAmount.toFixed(2)), {
+      const tx = await createTransaction(provider.connection, provider.wallet.publicKey, recipient, new BigNumber(finalAmount.toFixed(9)), {
         reference,
         memo,
       });
