@@ -78,18 +78,20 @@ export const Benefits: React.FC<BenefitProps> = (props) => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+  
 
   useEffect(() => {
     if(!benefits.length) return;
     const benefitsToShow = benefits.filter(benefit => (nftData.findIndex(nft => (nft.mint === benefit.mint.toBase58())) >= 0));
     if(!benefitsToShow.length) return;
     setBenefitChosen(benefitsToShow[0]);
+    console.log("benefits to show,", benefitsToShow)
   }, [benefits.length, nftData.length]);
-
-
 
   const benefitsToShow = benefits.filter(benefit => (nftData.findIndex(nft => (nft.mint === benefit.mint.toBase58())) >= 0));
   // Add when filtering is ready
+
+  
 
   return (
     <div className="benefitsContainer container">
