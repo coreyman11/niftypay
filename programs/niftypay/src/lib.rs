@@ -20,9 +20,6 @@ pub mod niftypay {
         //Check the mint on the token account
         assert_eq!(nft_token_account.mint, nft_mint_account.key());
 
-        //Check the amount on the token accounts (which is going to be 1 for right now becasue there is only 1?)
-        // assert_eq!(nft_token_account.amount,1);
-
         //benefit is configured for provided nft
         assert_eq!(nft_mint_account.key(), benefit.mint);
 
@@ -83,9 +80,6 @@ pub struct VerifyNFT<'info> {
     //The token account that the user uses to hold the NFT
     pub nft_token_account: Account<'info, TokenAccount>,
 
-    // //The metadata account of the NFT
-    // pub nft_metadata_account: AccountInfo<'info>,
-    
     pub benefit: Account<'info, Benefit>,
     /// CHECK: Doesnt need to be checked because it's a pubkey
     pub business_owner: AccountInfo<'info>,
@@ -97,6 +91,7 @@ pub struct VerifyNFT<'info> {
 pub struct CreateProject<'info> {
     #[account(init, payer = creator, space = Project::LEN)]
     pub project: Account<'info, Project>,
+    #[account(mut)]
     pub creator: Signer<'info>,
     pub system_program: Program<'info, System>,
 }
@@ -190,25 +185,3 @@ pub enum ErrorCode {
 //https://docs.metaplex.com/architecture/deep_dive/overview Link to the metaplex docs
 //https://medium.com/metaplex/metaplex-metadata-standard-45af3d04b541 link to metaplex PDA structure
 
-/*
-var solRpcConditions = [
-  {
-    method: "GetTokenAccountsByOwner",
-    params: [
-      ":userAddress",
-      {
-        programId: "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
-      },
-      {
-        encoding: "jsonParsed",
-      },
-    ],
-    chain: 'solana',
-    returnValueTest: {
-      key: '$[?(@.account.data.parsed.info.mint == "29G6GSKNGP8K6ATy65QrNZk4rNgsZX1sttvb5iLXWDcE")].account.data.parsed.info.tokenAmount.amount',
-      comparator: ">",
-      value: "0",
-    },
-  },
-];
-*/
