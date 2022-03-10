@@ -3,6 +3,12 @@ import React from 'react';
 
 const qrcodeRegionId = "html5qr-code-full-region";
 
+const html5QrcodeScanner = new Html5QrcodeScanner("reader", {
+  fps: 10,
+  qrbox: { width: 250, height: 250 },
+  videoConstraints: { facingMode: { exact: "environment" } },
+});
+
 class Html5QrcodePlugin extends React.Component {
     render() {
         return <div id={qrcodeRegionId} />;
