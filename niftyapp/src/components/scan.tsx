@@ -29,7 +29,7 @@ export const Scan: React.FC<ScanProps> = (props) => {
         <Html5QrcodePlugin
           fps={10}
           qrbox={300}
-          disableFlip={true}
+          disableFlip={false}
           qrCodeSuccessCallback={onSuccess}
           verbose
         />
