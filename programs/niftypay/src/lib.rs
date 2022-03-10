@@ -99,6 +99,7 @@ pub struct CreateProject<'info> {
 pub struct CreateBenefit<'info> {
     #[account(init, payer = creator, space = Benefit::LEN)]
     pub benefit: Account<'info, Benefit>,
+    #[account(mut)]
     pub creator: Signer<'info>,
     pub system_program: Program<'info, System>,
 }
