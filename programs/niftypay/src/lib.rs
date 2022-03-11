@@ -152,7 +152,7 @@ const ALLOWED_USAGE_LENGTH: usize = 1;
 const BENEFIT_TYPE_LENGTH: usize = 8;
 const FREQUENCY_LENGTH: usize = 8;
 const MAX_PROJECT_NAME_LENGTH: usize = 60 * 4; // 60 chars max.
-const BUSINESS_LOGO_LENGTH: usize = 50; // 50 chars max for img url
+const BUSINESS_LOGO_LENGTH: usize = 50 * 4; // 50 chars max for img url
 
 impl Benefit {
     const LEN: usize = DISCRIMINATOR_LENGTH
