@@ -6,8 +6,10 @@ interface BenefitItemsProps {
   businessOwner: any
   claimable: any
   discount: number
+  perk: string
   onClick: () => void;
   selected: boolean
+  logo: string
 }
 
 export const BenefitItem: React.FC<BenefitItemsProps> = (props) => {
@@ -18,7 +20,7 @@ export const BenefitItem: React.FC<BenefitItemsProps> = (props) => {
 
   return (
     <div onClick={props.onClick} className={`benefitItem ${props.selected && 'chosenOne'}`}>
-      <img src="../milkbar.png" className="benefitImg"/>
+      <img src={props.logo} className="benefitImg"/>
       <div className="benefitDetails">
         <div className="benefitDetailsTop">
           <div className="benefitDetailGroup">
@@ -29,12 +31,12 @@ export const BenefitItem: React.FC<BenefitItemsProps> = (props) => {
         <div className="benefitDetailsBottom">
          <div className="benefitDetailGroup">
             <div className="benefitDetailHeader">BENEFIT</div>
-            <div className="benefitDetailItem">{props.discount}% Discount</div>
+            <div className="benefitDetailItem">{props.discount < 100 ? props.discount + "% Discount" : props.perk}</div>
           </div>
-          <div className="benefitDetailGroup">
+          {/* <div className="benefitDetailGroup">
             <div className="benefitDetailHeader">CLAIMABLE</div>
             <div className="benefitDetailItem">{props.claimable}</div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

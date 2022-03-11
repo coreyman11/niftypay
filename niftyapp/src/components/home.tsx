@@ -6,6 +6,7 @@ import { AnchorContext } from "../provider/anchorProvider";
 import { Commitment } from "@solana/web3.js";
 import { Tab } from "../types";
 import { Nifty } from './nifty';
+import { BenefitItem } from './benefitItem';
 
 interface HomeProps {
   setTab: (tab: Tab) => void;
@@ -39,20 +40,8 @@ export const Home: React.FC<HomeProps> = (props) => {
   useEffect(() => {
     if(provider && provider.connection) {
       getAllNftData();
-      getBenefitList();
     }
   }, [provider?.connection])
-
-  //temp
-  const getBenefitList = async () => {
-    try {
-      const benefits = await program.account.benefit.all([]);
-      console.log("Got the benefits", benefits)
-      setBenefits(benefits.map(p => ({...p.account, id: p.publicKey})))
-    } catch (error) {
-      console.log("error", error);
-    }
-  }
 
   return (
     <div className="homeContainer container">
@@ -74,18 +63,6 @@ export const Home: React.FC<HomeProps> = (props) => {
           })) :
           "You have no NFTs in this wallet."
         }
-        {
-            benefits.map((benefit) => {
-              console.log("benefits to show", benefit)
-              return (
-                <div key={benefit.name} className="benefitItem">
-                  {benefit.name}
-                  {/* {benefit.businessOwner} */}
-                  <img src={benefit.businessLogo} />
-                </div>
-              )
-            })
-          }
       </div>
     </div>
   );
