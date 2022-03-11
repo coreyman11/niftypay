@@ -43,7 +43,7 @@ pub mod niftypay {
 
         Ok(())
     }
-    pub fn create_benefit(ctx: Context<CreateBenefit>, project_id: Pubkey, name: String, benefit_type: BenefitType, frequency: Frequency, allowed_usage: u8, discount: u8, business_owner: Pubkey, business_logo: String, nft_mint: Pubkey,) -> ProgramResult {
+    pub fn create_benefit(ctx: Context<CreateBenefit>, project_id: Pubkey, name: String, benefit_type: BenefitType, frequency: Frequency, allowed_usage: u8, discount: u8, business_owner: Pubkey, nft_mint: Pubkey,) -> ProgramResult {
         let benefit: &mut Account<Benefit> = &mut ctx.accounts.benefit;
         let creator: &Signer = &ctx.accounts.creator;
         let clock: Clock = Clock::get().unwrap();
@@ -61,7 +61,6 @@ pub mod niftypay {
         benefit.frequency = frequency;
         benefit.discount = discount;
         benefit.business_owner = business_owner;
-        benefit.business_logo = business_logo;
         benefit.mint = nft_mint;
 
         Ok(())
@@ -132,7 +131,6 @@ pub struct Benefit {
     pub project_id: Pubkey,
     pub creator: Pubkey,
     pub business_owner: Pubkey,
-    pub business_logo: String,
     pub mint: Pubkey,
     pub name: String,
     pub benefit_type: BenefitType,
@@ -152,7 +150,6 @@ const ALLOWED_USAGE_LENGTH: usize = 1;
 const BENEFIT_TYPE_LENGTH: usize = 8;
 const FREQUENCY_LENGTH: usize = 8;
 const MAX_PROJECT_NAME_LENGTH: usize = 60 * 4; // 60 chars max.
-const BUSINESS_LOGO_LENGTH: usize = 50 * 4; // 50 chars max for img url
 
 impl Benefit {
     const LEN: usize = DISCRIMINATOR_LENGTH
@@ -163,7 +160,6 @@ impl Benefit {
         + TIMESTAMP_LENGTH // Timestamp.
         + ALLOWED_USAGE_LENGTH // Allowed usage.
         + DISCOUNT_LENGTH // Discount.
-        + BUSINESS_LOGO_LENGTH // business logo img
         + BENEFIT_TYPE_LENGTH
         + FREQUENCY_LENGTH
         + STRING_LENGTH_PREFIX + MAX_BENEFIT_NAME_LENGTH; // Benefit name.

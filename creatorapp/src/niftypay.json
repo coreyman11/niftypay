@@ -127,10 +127,6 @@
           "type": "publicKey"
         },
         {
-          "name": "businessLogo",
-          "type": "string"
-        },
-        {
           "name": "nftMint",
           "type": "publicKey"
         }
@@ -180,10 +176,6 @@
           {
             "name": "businessOwner",
             "type": "publicKey"
-          },
-          {
-            "name": "businessLogo",
-            "type": "string"
           },
           {
             "name": "mint",
