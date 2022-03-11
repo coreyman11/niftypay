@@ -48,7 +48,7 @@
         },
         {
           "name": "creator",
-          "isMut": false,
+          "isMut": true,
           "isSigner": true
         },
         {
@@ -84,7 +84,7 @@
         },
         {
           "name": "creator",
-          "isMut": false,
+          "isMut": true,
           "isSigner": true
         },
         {
@@ -125,6 +125,10 @@
         {
           "name": "businessOwner",
           "type": "publicKey"
+        },
+        {
+          "name": "businessLogo",
+          "type": "string"
         },
         {
           "name": "nftMint",
@@ -176,6 +180,10 @@
           {
             "name": "businessOwner",
             "type": "publicKey"
+          },
+          {
+            "name": "businessLogo",
+            "type": "string"
           },
           {
             "name": "mint",
@@ -253,26 +261,23 @@
           }
         ]
       }
-    }
-  ],
-  "errors": [
-    {
-      "code": 6000,
-      "name": "VerifyNFT",
-      "msg": "Error, Not verified"
     },
     {
-      "code": 6001,
-      "name": "NameNotValid",
-      "msg": "Provide a valid project name."
-    },
-    {
-      "code": 6002,
-      "name": "NameTooLong",
-      "msg": "The provided name should be 50 characters long maximum."
+      "name": "ErrorCode",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "VerifyNFT"
+          },
+          {
+            "name": "NameNotValid"
+          },
+          {
+            "name": "NameTooLong"
+          }
+        ]
+      }
     }
-  ],
-  "metadata": {
-    "address": "2FHyngKYAWyoHFnC9Ryf7pM28kEXzNuNTHUAoCEMFHyg"
-  }
+  ]
 }
