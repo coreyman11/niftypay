@@ -1,7 +1,7 @@
 use anchor_lang::prelude::*;
 use anchor_spl::token::{TokenAccount, Mint };
 
-declare_id!("2FHyngKYAWyoHFnC9Ryf7pM28kEXzNuNTHUAoCEMFHyg");
+declare_id!("3a3X892KugcB5q6ZrWFAK5v7Pu5w2SQs3GjEjVPCPecH");
 
 #[program]
 pub mod niftypay {
