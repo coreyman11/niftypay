@@ -48,7 +48,7 @@ export const Home: React.FC<HomeProps> = (props) => {
       <div className="top">
         <p>&nbsp; &nbsp; &nbsp;</p>
         <p className="header">✨ Your <span className="highlight">&nbsp;NFTs&nbsp;</span></p>
-        <img src="./qricon.png" height="30px" className="backArrow" onClick={() => props.setTab(Tab.Pay)}></img>
+        <img src="./qricon.png" height="30px" className="backArrow" onClick={() => props.setTab(Tab.Scan)}></img>
       </div>
       <div className="content homeContent">
         {nftData.length ?

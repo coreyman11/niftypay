@@ -11,7 +11,6 @@ interface Project {
     creator: string;
 }
 
-
 export const Projects = () => {
     const { program, provider } = useContext(AnchorContext);
     const [projects, setProjects] = useState<Project[]>([]);
@@ -48,16 +47,12 @@ export const Projects = () => {
     const getBenefitList = async () => {
         try {
           const benefits = await program.account.benefit.all();
-          console.log("Got the benefits", benefits)
           setBenefits(benefits.map((p:any) => ({...p.account, id: p.publicKey})))
+          console.log("Got the benefits", benefits)
         } catch (error) {
-          console.log("error", error);
+          console.error("error", error);
         }
       }
-
-    const abbreviate = async (item: string) => {
-        return item.slice(0,4).concat('...',item.slice(item.length-4,item.length))
-    }
 
     useEffect(() => {
         if(!provider?.wallet?.publicKey) return;
@@ -66,6 +61,7 @@ export const Projects = () => {
         getProjectList();
         getBenefitList();
         console.log("Got the projects", projects)
+        console.log("Got the benefits", benefits)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [provider?.wallet?.publicKey])
 

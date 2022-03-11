@@ -46,7 +46,7 @@ export const Benefits: React.FC<BenefitProps> = (props) => {
       console.log("Got the benefits", benefits)
       setBenefits(benefits.map(p => ({...p.account, id: p.publicKey})))
     } catch (error) {
-      console.log("error", error);
+      console.error("error", error);
     }
   }
 
