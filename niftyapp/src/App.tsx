@@ -7,6 +7,7 @@ import { Benefits } from './components/benefits';
 import { Scan } from './components/scan';
 import { Pay } from './components/pay';
 import { Congrats } from './components/congrats';
+import { NiftyBenefits } from './components/nifty_benefits';
 import { Tab } from "./types";
 window.Buffer = Buffer;
 
@@ -22,6 +23,8 @@ const renderTab = (tab: Tab, setTab: (tab: Tab) => void, props: any, setProps: (
       return <Pay {...props} setTab={setTab} setProps={setProps} />;
     case Tab.Congrats:
       return <Congrats {...props} setTab={setTab} setProps={setProps} />;
+    case Tab.NiftyBenefits:
+      return <NiftyBenefits {...props} setTab={setTab} setProps={setProps} />;
     default:
       return null;
   }

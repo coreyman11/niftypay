@@ -122,28 +122,6 @@ export const Benefits: React.FC<BenefitProps> = (props) => {
               )
             })
           }
-          <BenefitItem {...props}
-            onClick={() => console.log("fake chosen")}
-            key={"AMC"}
-            benefitName={"AMC Free Movie Ticket"}
-            businessOwner={"58BFz8PD83qBBY8rG9rjJPrWF6FWMduaTBBvkLRqAL8u"}
-            claimable={"5"}
-            discount={100}
-            perk={"Free Ticket"}
-            selected={false}
-            logo={"../amc.png"}
-          />
-          <BenefitItem {...props}
-            onClick={() => console.log("fake chosen")}
-            key={"Starbucks"}
-            benefitName={"Starbucks"}
-            businessOwner={"58BFz8PD83qBBY8rG9rjJPrWF6FWMduaTBBvkLRqAL8u"}
-            claimable={"5"}
-            discount={100}
-            perk={"Starbucks 20% Off"}
-            selected={false}
-            logo={"../starbucks.png"}
-          />
         </div>
       </div>
       <div className="button" onClick={() => goToPay()}>Next</div>

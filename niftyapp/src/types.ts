@@ -1,3 +1,3 @@
 export enum Tab {
-    Home, Benefits, Scan, Pay, QR, Congrats
+    Home, Benefits, Scan, Pay, QR, Congrats, NiftyBenefits
 }

@@ -3,6 +3,7 @@ import '../App.css';
 
 interface NiftyProps {
   jsonRawData: any
+  onClick: () => void;
 }
 
 export const Nifty: React.FC<NiftyProps> = (props) => {
@@ -21,7 +22,7 @@ export const Nifty: React.FC<NiftyProps> = (props) => {
   }, [fetchNFT, props.jsonRawData]);
 
   return (
-    <div className="niftyContainer">
+    <div onClick={props.onClick} className="niftyContainer">
       <img className="niftyImg" src={imgSrc}></img>
       <div className="niftyLabel">{niftyName}</div>
     </div>

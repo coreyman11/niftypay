@@ -57,6 +57,7 @@ export const Home: React.FC<HomeProps> = (props) => {
             return (
               <Nifty
                 key={nft.mint}
+                onClick={() => props.setTab(Tab.NiftyBenefits)}
                 jsonRawData={nft.data.uri}
               />
             )

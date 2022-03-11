@@ -32,7 +32,6 @@ export const BenefitForm = () => {
                 2, //allowed usage
                 discount, //discount %
                 new PublicKey(businessWallet),
-                businessLogo,
                 projectAccount.contractId,
                 {
                 accounts: {
