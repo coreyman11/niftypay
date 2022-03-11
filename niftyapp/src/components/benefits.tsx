@@ -91,8 +91,6 @@ export const Benefits: React.FC<BenefitProps> = (props) => {
   const benefitsToShow = benefits.filter(benefit => (nftData.findIndex(nft => (nft.mint === benefit.mint.toBase58())) >= 0));
   // Add when filtering is ready
 
-  
-
   return (
     <div className="benefitsContainer container">
       <div className="top">

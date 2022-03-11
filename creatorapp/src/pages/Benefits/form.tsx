@@ -14,6 +14,7 @@ export const BenefitForm = () => {
     const [benefitName, setBenefitName] = useState('');
     const [benefitType, setBenefitType] = useState('');
     const [businessWallet, setBusinessWallet] = useState('');
+    const [businessLogo, setBusinessLogo] = useState('"../milkbar.png"');
     const [discount, setDiscount] = useState(20);
     const [frequency, setFrequency] = useState('');
     const [userWallet, setUserWallet] = useState('');
@@ -31,6 +32,7 @@ export const BenefitForm = () => {
                 2, //allowed usage
                 discount, //discount %
                 new PublicKey(businessWallet),
+                businessLogo,
                 projectAccount.contractId,
                 {
                 accounts: {
@@ -107,6 +109,17 @@ export const BenefitForm = () => {
                             placeholder="asr230192ud8hqweqwrqfw982yr31r798qhw"
                             value={businessWallet}
                             onChange={(e) => setBusinessWallet(e.target.value)}
+                        />
+                    </div>
+                    <div className="inputGroup">
+                        <div className="inputLabel">BUSINESS LOGO</div>
+                        <input
+                            className="inputField"
+                            type="file"
+                            accept="image/*"
+                            placeholder=""
+                            id="img"
+                            onChange={(e) => setBusinessLogo(e.target.value)}
                         />
                     </div>
                     {/* <div className="inputGroup">

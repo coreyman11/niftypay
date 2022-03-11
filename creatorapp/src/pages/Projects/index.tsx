@@ -88,10 +88,6 @@ export const Projects = () => {
                                     <div className="projectDetailText">{id.slice(0,4).concat('...',id.slice(id.length-4,id.length))}</div>
                                 </div>
                                 <div className="projectDetailGroup">
-                                    <div className="projectDetailHeader">Creator</div>
-                                    <div className="projectDetailText">{creator.slice(0,4).concat('...',creator.slice(creator.length-4,creator.length))}</div>
-                                </div>
-                                <div className="projectDetailGroup">
                                     <div className="projectDetailHeader">NFT Token Address</div>
                                     <div className="projectDetailText">{contractId.slice(0,4).concat('...',contractId.slice(id.length-4,contractId.length))}</div>
                                 </div>

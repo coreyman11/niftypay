@@ -176,7 +176,7 @@ body {
 
 .projectBox {
   background-color: hsl(0, 6%, 11%, .4);
-  margin: 10px auto;
+  margin: 30px auto 10px;
   border-radius: 10px;
   padding: 30px;
   width: 400px;
@@ -185,6 +185,7 @@ body {
 .projectBoxColumns {
   display: flex;
   justify-content: flex-start;
+  margin-bottom: 20px;
 }
 
 .projectDetailName {

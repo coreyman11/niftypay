@@ -48,7 +48,7 @@ body {
 .container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
   justify-content: space-between;
 }
 
@@ -123,6 +123,7 @@ body {
 
 /* NIFTY */
 .niftyContainer {
+  position: relative;
   border-radius: 10px;
   height: 150px;
   width: 150px;
@@ -131,17 +132,19 @@ body {
 }
 
 .niftyImg {
-  position: relative;
+  /* position: relative; */
   border-radius: 10px;
   height: 100%;
   width: 100%;
 }
 
 .niftyLabel {
-  position: relative;
-  background-color:hsl(0, 6%, 11%, 1);
+  position: absolute;
+  background-color:hsl(0, 6%, 11%, 0.9);
   margin: 0px 5px;
-  bottom: 20%;
+  bottom: 5%;
+  width: 90%;
+  border-radius: 10px;
 }
 
 /* BENEFITS */
@@ -189,6 +192,7 @@ body {
 .benefitDetailItem {
 
 }
+
 .chosenOne {
   border: solid 2px white;
 }

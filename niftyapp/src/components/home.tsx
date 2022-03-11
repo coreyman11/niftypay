@@ -18,6 +18,8 @@ const opts: { preflightCommitment: Commitment } = {
 export const Home: React.FC<HomeProps> = (props) => {
   const [nftData, setNftData] = useState<any[]>([]);
   const { provider, program } = useContext(AnchorContext);
+  //temp
+  const [benefits, setBenefits] = useState<any>([]);
 
   const getAllNftData = async () => {
     try {
@@ -37,15 +39,27 @@ export const Home: React.FC<HomeProps> = (props) => {
   useEffect(() => {
     if(provider && provider.connection) {
       getAllNftData();
+      getBenefitList();
     }
   }, [provider?.connection])
+
+  //temp
+  const getBenefitList = async () => {
+    try {
+      const benefits = await program.account.benefit.all([]);
+      console.log("Got the benefits", benefits)
+      setBenefits(benefits.map(p => ({...p.account, id: p.publicKey})))
+    } catch (error) {
+      console.log("error", error);
+    }
+  }
 
   return (
     <div className="homeContainer container">
       <div className="top">
         <p>&nbsp; &nbsp; &nbsp;</p>
         <p className="header">✨ Your <span className="highlight">&nbsp;NFTs&nbsp;</span></p>
-        <img src="./qricon.png" height="30px" className="backArrow" onClick={() => props.setTab(Tab.Scan)}></img>
+        <img src="./qricon.png" height="30px" className="backArrow" onClick={() => props.setTab(Tab.Pay)}></img>
       </div>
       <div className="content homeContent">
         {nftData.length ?
@@ -60,6 +74,18 @@ export const Home: React.FC<HomeProps> = (props) => {
           })) :
           "You have no NFTs in this wallet."
         }
+        {
+            benefits.map((benefit) => {
+              console.log("benefits to show", benefit)
+              return (
+                <div key={benefit.name} className="benefitItem">
+                  {benefit.name}
+                  {/* {benefit.businessOwner} */}
+                  <img src={benefit.businessLogo} />
+                </div>
+              )
+            })
+          }
       </div>
     </div>
   );
