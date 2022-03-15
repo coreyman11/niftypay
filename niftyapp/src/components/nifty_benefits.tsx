@@ -56,12 +56,11 @@ export const NiftyBenefits: React.FC<NiftyBenefitsProps> = (props) => {
                 discount={benefit.discount}
                 perk={""}
                 selected={false}
-                logo={"../milkbar.png"}
               />
             )
           })
         }
-      <BenefitItem {...props}
+      {/* <BenefitItem {...props}
           onClick={() => console.log("fake chosen")}
           key={"AMC"}
           benefitName={"AMC Free Movie Ticket"}
@@ -70,7 +69,6 @@ export const NiftyBenefits: React.FC<NiftyBenefitsProps> = (props) => {
           discount={100}
           perk={"Free Ticket"}
           selected={false}
-          logo={"../amc.png"}
         />
         <BenefitItem {...props}
           onClick={() => console.log("fake chosen")}
@@ -81,8 +79,7 @@ export const NiftyBenefits: React.FC<NiftyBenefitsProps> = (props) => {
           discount={100}
           perk={"Starbucks 20% Off"}
           selected={false}
-          logo={"../starbucks.png"}
-        />
+        /> */}
       </div>
     </div>
   );

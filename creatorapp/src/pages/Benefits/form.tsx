@@ -14,7 +14,6 @@ export const BenefitForm = () => {
     const [benefitName, setBenefitName] = useState('');
     const [benefitType, setBenefitType] = useState('');
     const [businessWallet, setBusinessWallet] = useState('');
-    const [businessLogo, setBusinessLogo] = useState('"../milkbar.png"');
     const [discount, setDiscount] = useState(20);
     const [frequency, setFrequency] = useState('');
     const [userWallet, setUserWallet] = useState('');
@@ -82,8 +81,8 @@ export const BenefitForm = () => {
                     <div className="inputGroupRow">
                         <div className="inputGroup smallInputGroup">
                             <div className="inputLabel">TYPE OF BENEFIT</div>
-                            <select name="benefitType" id="benefitType" className="inputField smallInputField">
-                                <option value="percent_discount">% Discount</option>
+                            <select name="benefitType" id="benefitType" className="inputField smallInputField" >
+                                <option value="percentDiscount">% Discount</option>
                                 <option value="amount_discount">Amount Discount</option>
                                 <option value="ticket">Event Ticket</option>
                                 <option value="free">Free Item</option>
@@ -110,7 +109,7 @@ export const BenefitForm = () => {
                             onChange={(e) => setBusinessWallet(e.target.value)}
                         />
                     </div>
-                    <div className="inputGroup">
+                    {/* <div className="inputGroup">
                         <div className="inputLabel">BUSINESS LOGO</div>
                         <input
                             className="inputField"
@@ -120,7 +119,7 @@ export const BenefitForm = () => {
                             id="img"
                             onChange={(e) => setBusinessLogo(e.target.value)}
                         />
-                    </div>
+                    </div> */}
                     {/* <div className="inputGroup">
                         <div className="inputLabel">RENEWAL FREQUENCY</div>
                         <input

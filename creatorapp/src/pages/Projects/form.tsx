@@ -14,14 +14,14 @@ export const ProjectForm = () => {
     const [userWallet, setUserWallet] = useState('');
     const [collectionName, setCollectionName] = useState('');
     const [collectionId, setCollectionId] = useState('');
-    const [walletId1, setWalletId1] = useState('');
-    const [walletId2, setWalletId2] = useState('');
-    const [walletId3, setWalletId3] = useState('');
+    // const [walletId1, setWalletId1] = useState('');
+    // const [walletId2, setWalletId2] = useState('');
+    // const [walletId3, setWalletId3] = useState('');
     const createProject = async () => {
         try {
             const creator = provider.wallet.publicKey;
             const project = web3.Keypair.generate();
-            await program.rpc.createProject(collectionName, new PublicKey(collectionId), [new PublicKey(walletId1)], {
+            await program.rpc.createProject(collectionName, new PublicKey(collectionId), [], {
                 accounts: {
                     project: project.publicKey,
                     creator,
@@ -77,7 +77,7 @@ export const ProjectForm = () => {
                             onChange={(e) => setCollectionId(e.target.value)}
                         />
                     </div>
-                    <div className="inputGroup">
+                    {/* <div className="inputGroup">
                         <div className="inputLabel">CORE MEMBERS WALLET IDS</div>
                         <input
                             className="inputField"
@@ -100,7 +100,7 @@ export const ProjectForm = () => {
                             value={walletId3}
                             onChange={(e) => setWalletId3(e.target.value)}
                         />
-                    </div>
+                    </div> */}
 
                     <button type="submit" className="button">
                         Create Collection

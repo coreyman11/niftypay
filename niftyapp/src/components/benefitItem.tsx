@@ -9,7 +9,6 @@ interface BenefitItemsProps {
   perk: string
   onClick: () => void;
   selected: boolean
-  logo: string
 }
 
 export const BenefitItem: React.FC<BenefitItemsProps> = (props) => {
@@ -20,7 +19,7 @@ export const BenefitItem: React.FC<BenefitItemsProps> = (props) => {
 
   return (
     <div onClick={props.onClick} className={`benefitItem ${props.selected && 'chosenOne'}`}>
-      <img src={props.logo} className="benefitImg"/>
+      <img src={`https://avatars.dicebear.com/api/identicon/${props.benefitName.replace(/[^a-zA-Z ]/g, "")}.svg`} className="benefitImg"/>
       <div className="benefitDetails">
         <div className="benefitDetailsTop">
           <div className="benefitDetailGroup">

@@ -117,7 +117,7 @@ export const Benefits: React.FC<BenefitProps> = (props) => {
                   discount={benefit.discount}
                   perk={""}
                   selected={benefitChosen?.id?.toBase58() === benefit?.id?.toBase58()}
-                  logo={"../milkbar.png"}
+                  // logo={"../milkbar.png"}
                 />
               )
             })
